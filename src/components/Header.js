@@ -1,39 +1,56 @@
 import React from 'react';
-import {
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarNav,
-  MDBNavItem,
-  MDBNavLink,
-  MDBNavbarToggler,
-  MDBCollapse,
-} from 'mdbreact';
-import { useLocation } from 'react-router-dom';
+import { Navbar, Icon } from 'react-materialize';
+import { useLocation, Link } from 'react-router-dom';
 
-function Header() {
+const NewHeader = () => {
   const location = useLocation();
+  console.log(location);
 
   return (
-    <MDBNavbar color='unique-color-dark' expand='md' dark>
-      <MDBNavbarBrand>
-        <strong className='white-text'>BDO-Stuff</strong>
-      </MDBNavbarBrand>
-      <MDBNavbarToggler />
-      <MDBCollapse id='navbarCollapse3' isOpen={true} navbar>
-        <MDBNavbarNav style={{ marginLeft: 'auto' }} left>
-          <MDBNavItem active={location.pathname === '/'}>
-            <MDBNavLink to='/'>Home</MDBNavLink>
-          </MDBNavItem>
-          <MDBNavItem active={location.pathname === '/marketplace'}>
-            <MDBNavLink to='/marketplace'>Marketplace</MDBNavLink>
-          </MDBNavItem>
-          <MDBNavItem active={location.pathname === '/caphras-calculator'}>
-            <MDBNavLink to='/caphras-calculator'>Caphras Calculator</MDBNavLink>
-          </MDBNavItem>
-        </MDBNavbarNav>
-      </MDBCollapse>
-    </MDBNavbar>
-  );
-}
+    <div>
+      <Navbar
+        alignLinks='right'
+        brand={
+          <Link to='/' className='brand-logo'>
+            BDO-Stuff
+          </Link>
+        }
+        centerChildren
+        id='mobile-nav'
+        menuIcon={<Icon>menu</Icon>}
+        options={{
+          draggable: false,
+          edge: 'left',
+          inDuration: 250,
+          onCloseEnd: null,
+          onCloseStart: null,
+          onOpenEnd: null,
+          onOpenStart: null,
+          outDuration: 200,
+          preventScrolling: true,
+        }}
+        className='black'
+      >
+        <Link
+          to='/marketplace'
+          className={
+            location.pathname === '/marketplace' ? 'grey darken-3' : ''
+          }
+        >
+          Marketplace
+        </Link>
 
-export default Header;
+        <Link
+          to='/caphras-calculator'
+          className={
+            location.pathname === '/caphras-calculator' ? 'grey darken-3' : ''
+          }
+        >
+          Caphras Calculator
+        </Link>
+      </Navbar>
+    </div>
+  );
+};
+
+export default NewHeader;

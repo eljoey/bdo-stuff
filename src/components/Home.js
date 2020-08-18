@@ -1,25 +1,23 @@
 import React from 'react';
-import { MDBMask, MDBRow, MDBCol, MDBContainer } from 'mdbreact';
-import './home.css';
+import { Row, Col } from 'react-materialize';
+import './Home.css';
 
 const Home = () => {
   return (
-    <div className='bg'>
-      <MDBMask className='d-flex justify-content-center align-items-center gradient'>
-        <MDBContainer className='px-md-3 px-sm-0'>
-          <MDBRow>
-            <MDBCol md='12' className='mb-4 white-text text-center'>
-              <h3 className='display-3 font-weight-bold mb-0 pt-md-5'>
-                BDO-Stuff{' '}
-              </h3>
-              <hr className='hr-light my-4 w-75' />
-              <h4 className='subtext-header mt-2 mb-4'>
-                Your place for random bdo tools
+    <div className='bg '>
+      <div className='gradient valign-wrapper'>
+        <div className='container '>
+          <Row s={12}>
+            <Col s={12} className='center-align valign-center '>
+              <h3 className=''>BDO-Stuff </h3>
+              <div className='divider black' />
+              <h4 className='subtext-header mt-2 mb-4 '>
+                Your place for random bdo tools.
               </h4>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
-      </MDBMask>
+            </Col>
+          </Row>
+        </div>
+      </div>
     </div>
   );
 };
