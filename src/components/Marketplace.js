@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+import MarketplaceSelector from './MarketplaceSelector';
+import MarketplaceMenu from './MarketplaceMenu';
 
 const Marketplace = () => {
-  const [toggledId, setToggledId] = useState('');
-
-  const toggleCollapse = (id) => {
-    setToggledId(toggledId !== id ? id : '');
-  };
-
-  return <div></div>;
+  return (
+    <div className='row'>
+      <div className='col s4'>
+        <MarketplaceSelector />
+      </div>
+      <div className='col s8'>
+        <MarketplaceMenu />
+      </div>
+    </div>
+  );
 };
 
 export default Marketplace;

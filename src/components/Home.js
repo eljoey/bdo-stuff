@@ -2,6 +2,8 @@ import React from 'react';
 import { Row, Col } from 'react-materialize';
 import './Home.css';
 
+// TODO: Grab the background image instead of website link
+
 const Home = () => {
   return (
     <div className='bg '>
@@ -12,7 +14,7 @@ const Home = () => {
               <h3 className=''>BDO-Stuff </h3>
               <div className='divider black' />
               <h4 className='subtext-header mt-2 mb-4 '>
-                Your place for random bdo tools.
+                Your place for random bdo stuff.
               </h4>
             </Col>
           </Row>
