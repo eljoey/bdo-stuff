@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -7,12 +7,6 @@ import {
   MDBNavLink,
   MDBNavbarToggler,
   MDBCollapse,
-  MDBFormInline,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBContainer,
 } from 'mdbreact';
 import { useLocation } from 'react-router-dom';
 
@@ -22,7 +16,7 @@ function Header() {
   return (
     <MDBNavbar color='unique-color-dark' expand='md' dark>
       <MDBNavbarBrand>
-        <strong className='white-text'>MDBNavbar</strong>
+        <strong className='white-text'>BDO-Stuff</strong>
       </MDBNavbarBrand>
       <MDBNavbarToggler />
       <MDBCollapse id='navbarCollapse3' isOpen={true} navbar>
