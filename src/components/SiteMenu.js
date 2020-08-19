@@ -4,6 +4,8 @@ import Home from './Home';
 import Marketplace from './Marketplace';
 import UnderConstruction from './UnderConstruction';
 
+// TODO: Implement Region Selection.
+
 function SiteMenu() {
   return (
     <Switch>
