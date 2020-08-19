@@ -4,7 +4,6 @@ import { useLocation, Link } from 'react-router-dom';
 
 const NewHeader = () => {
   const location = useLocation();
-  console.log(location);
 
   return (
     <div>

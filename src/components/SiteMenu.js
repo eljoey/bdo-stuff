@@ -10,7 +10,7 @@ function SiteMenu() {
       <Route exact path='/'>
         <Home />
       </Route>
-      <Route exact path='/marketplace'>
+      <Route path='/marketplace'>
         <Marketplace />
       </Route>
       <Route path='/caphras-calculator'>

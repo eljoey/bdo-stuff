@@ -1,16 +1,25 @@
 import React from 'react';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import MarketplaceInfo from './MarketplaceInfo';
 import MarketplaceList from './MarketplaceList';
-import MarketplaceMenu from './MarketplaceMenu';
 
 const Marketplace = () => {
+  let { path, url } = useRouteMatch();
+
   return (
     <div className='row'>
       <div className='col s4'>
-        <MarketplaceList />
+        <MarketplaceList url={url} />
       </div>
-      <div className='col s8'>
-        <MarketplaceMenu />
-      </div>
+
+      <Switch>
+        <Route exact path={path}>
+          THIS IS THE DEFAULT PAGE
+        </Route>
+        <Route path={`${path}/:main-:sub`}>
+          <MarketplaceInfo className='col s8' />
+        </Route>
+      </Switch>
     </div>
   );
 };
