@@ -3,7 +3,8 @@ import { Navbar, Icon } from 'react-materialize';
 import { useLocation, Link } from 'react-router-dom';
 
 const NewHeader = () => {
-  const location = useLocation();
+  // Gets the name of main page (ex. gets 'marketplace' from location '/marketplace/list/1-1')
+  const location = useLocation().pathname.split('/')[1];
 
   return (
     <div>
@@ -32,18 +33,14 @@ const NewHeader = () => {
       >
         <Link
           to='/marketplace'
-          className={
-            location.pathname === '/marketplace' ? 'grey darken-3' : ''
-          }
+          className={location === 'marketplace' ? 'grey darken-3' : ''}
         >
           Marketplace
         </Link>
 
         <Link
           to='/caphras-calculator'
-          className={
-            location.pathname === '/caphras-calculator' ? 'grey darken-3' : ''
-          }
+          className={location === 'caphras-calculator' ? 'grey darken-3' : ''}
         >
           Caphras Calculator
         </Link>

@@ -1,13 +1,14 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-const MarketplaceInfo = () => {
+const Items = () => {
   let { main, sub } = useParams();
+
   return (
     <div>
-      GET INFO FOR {main}, {sub}
+      GET INFO FOR {main}-{sub}
     </div>
   );
 };
 
-export default MarketplaceInfo;
+export default Items;
