@@ -1,34 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link, useRouteMatch } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import apiService from './services/api';
 import { Row, Col, Preloader } from 'react-materialize';
 
 const ItemInfo = () => {
-  const { itemId } = useParams();
-  const { url } = useRouteMatch();
-  const [itemInfo, setItemInfo] = useState(null);
+  const { itemId, enhanceLevel } = useParams();
+  const [itemPricing, setItemPricing] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getItemInfo = async () => {
-      const fetchedItemInfo = await apiService.getItemInfo(itemId);
-      setItemInfo(fetchedItemInfo.detailList);
+    const getItemPricing = async () => {
+      const fetchedItemInfo = await apiService.getItemPricing(
+        itemId,
+        enhanceLevel
+      );
+      setItemPricing(fetchedItemInfo.marketConditionList);
       setLoading(false);
     };
 
-    getItemInfo();
-  }, [itemId]);
+    getItemPricing();
+  }, [enhanceLevel]);
 
   if (!loading) {
     return (
       <div>
-        {itemInfo.map((item) => (
-          <div>
-            <Link to={`${url}/${item.subKey}`} className='black-text'>
-              {item.name}--Price:{item.pricePerOne}--For Sale:{item.count}
-              --Enhance Level:{item.subKey}
-            </Link>
-          </div>
+        {itemPricing.map((item) => (
+          <div>{`Price: ${item.pricePerOne} -- Count: ${item.sellCount}`}</div>
         ))}
       </div>
     );

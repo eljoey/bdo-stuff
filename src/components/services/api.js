@@ -13,12 +13,20 @@ const getItemList = async (main, sub) => {
 
 const getItemInfo = async (id) => {
   const itemInfo = await axios.get(`${baseUrl}/item-info/${id}${region}`);
-  console.log(itemInfo.data);
 
   return itemInfo.data;
+};
+
+const getItemPricing = async (id, level) => {
+  const itemPricing = await axios.get(
+    `${baseUrl}/item-pricing/${id}/${level}${region}`
+  );
+
+  return itemPricing.data;
 };
 
 export default {
   getItemList,
   getItemInfo,
+  getItemPricing,
 };

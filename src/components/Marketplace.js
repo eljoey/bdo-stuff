@@ -3,6 +3,7 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import Items from './Items';
 import List from './List';
 import ItemInfo from './ItemInfo';
+import ItemPricing from './ItemPricing';
 
 const Marketplace = () => {
   let { path, url } = useRouteMatch();
@@ -14,6 +15,9 @@ const Marketplace = () => {
       </div>
 
       <Switch>
+        <Route path={`${path}/list/:main-:sub/:itemId/:enhanceLevel`}>
+          <ItemPricing />
+        </Route>
         <Route path={`${path}/list/:main-:sub/:itemId`}>
           <ItemInfo />
         </Route>
