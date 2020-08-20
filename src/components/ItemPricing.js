@@ -9,6 +9,8 @@ const ItemInfo = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
+
     const getItemPricing = async () => {
       const fetchedItemInfo = await apiService.getItemPricing(
         itemId,
@@ -19,7 +21,7 @@ const ItemInfo = () => {
     };
 
     getItemPricing();
-  }, [enhanceLevel]);
+  }, [enhanceLevel, itemId]);
 
   if (!loading) {
     return (

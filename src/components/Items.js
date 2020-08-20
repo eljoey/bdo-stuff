@@ -10,6 +10,8 @@ const Items = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
+
     const fetchItemList = async () => {
       const fetchedItemList = await apiService.getItemList(main, sub);
       setItemList(fetchedItemList.marketList);

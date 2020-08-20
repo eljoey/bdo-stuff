@@ -10,6 +10,8 @@ const ItemInfo = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
+
     const getItemInfo = async () => {
       const fetchedItemInfo = await apiService.getItemInfo(itemId);
       setItemInfo(fetchedItemInfo.detailList);
