@@ -2,7 +2,9 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const ListItems = ({ subTabs, tabId, url }) => {
-  const selectedItem = useLocation().pathname.replace('/marketplace/list/', '');
+  const selectedItem = useLocation()
+    .pathname.replace('/marketplace/list/', '')
+    .split('/')[0];
 
   return (
     <>

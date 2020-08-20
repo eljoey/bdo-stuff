@@ -185,7 +185,7 @@ const mpTabs = [
       },
       {
         title: 'Jordun',
-        option: 18,
+        option: 19,
       },
     ],
   },
@@ -543,23 +543,23 @@ const mpTabs = [
       },
       {
         title: '[Elephant] Stirrups',
-        option: 8,
-      },
-      {
-        title: '[Elephant] Armor',
         option: 9,
       },
       {
-        title: '[Elephant] Mask',
+        title: '[Elephant] Armor',
         option: 10,
       },
       {
-        title: '[Elephant] Saddle',
+        title: '[Elephant] Mask',
         option: 11,
       },
       {
-        title: 'Courser Training',
+        title: '[Elephant] Saddle',
         option: 12,
+      },
+      {
+        title: 'Courser Training',
+        option: 13,
       },
     ],
   },
