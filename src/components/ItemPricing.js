@@ -7,11 +7,15 @@ import {
   Preloader,
   Collection,
   CollectionItem,
+  Badge,
 } from 'react-materialize';
 
-const ItemInfo = () => {
+//TODO: Reverse list to have highest price up top.
+
+const ItemPricing = () => {
   const { itemId, enhanceLevel } = useParams();
   const [itemPricing, setItemPricing] = useState(null);
+  const [itemName, setItemName] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,6 +26,9 @@ const ItemInfo = () => {
         itemId,
         enhanceLevel
       );
+      const fetchedItemName = await apiService.getItemInfo(itemId);
+
+      setItemName(fetchedItemName.detailList[0].name);
       setItemPricing(fetchedItemInfo.marketConditionList);
       setLoading(false);
     };
@@ -32,6 +39,10 @@ const ItemInfo = () => {
   if (!loading) {
     return (
       <Collection>
+        <CollectionItem className='center-align'>
+          {itemName}
+          <Badge>In Stock</Badge>
+        </CollectionItem>
         {itemPricing.map((item) => (
           <CollectionItem
             style={{
@@ -39,7 +50,12 @@ const ItemInfo = () => {
               backgroundColor: '#616161',
               color: 'white',
             }}
-          >{`Price: ${item.pricePerOne} -- Count: ${item.sellCount}`}</CollectionItem>
+          >
+            <div>
+              {`$${item.pricePerOne}`}
+              <Badge className='teal white-text'>{item.sellCount}</Badge>
+            </div>
+          </CollectionItem>
         ))}
       </Collection>
     );
@@ -56,4 +72,4 @@ const ItemInfo = () => {
   }
 };
 
-export default ItemInfo;
+export default ItemPricing;

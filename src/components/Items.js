@@ -9,12 +9,16 @@ import {
   CollectionItem,
   Badge,
 } from 'react-materialize';
+import mpList from './assets/mpTabs';
 
 const Items = () => {
   const { main, sub } = useParams();
   const { url } = useRouteMatch();
   const [itemList, setItemList] = useState(null);
   const [loading, setLoading] = useState(true);
+  const findMpTabIndex = mpList.indexOf(
+    mpList.find((e) => e.tab === Number(main))
+  );
 
   useEffect(() => {
     setLoading(true);
@@ -30,12 +34,15 @@ const Items = () => {
   if (!loading) {
     return (
       <Collection>
+        <CollectionItem className='center-align' style={{ padding: '15px' }}>
+          {mpList[findMpTabIndex].subTabs[Number(sub) - 1].title}
+        </CollectionItem>
         {itemList.map((item) => (
           <CollectionItem
             style={{ padding: '15px', backgroundColor: '#616161' }}
           >
             <Link to={`${url}/${item.mainKey}`} className='white-text'>
-              {item.name}--Price:{item.minPrice}--For Sale:{item.sumCount}
+              {item.name}
               <Badge className='teal white-text'>{item.sumCount}</Badge>
             </Link>
           </CollectionItem>

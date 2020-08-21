@@ -7,9 +7,10 @@ import {
   Preloader,
   Collection,
   CollectionItem,
+  Badge,
 } from 'react-materialize';
 
-const ItemInfo = () => {
+const ItemInfo = ({ setItemName }) => {
   const { itemId } = useParams();
   const { url } = useRouteMatch();
   const [itemInfo, setItemInfo] = useState(null);
@@ -28,15 +29,20 @@ const ItemInfo = () => {
   }, [itemId]);
 
   if (!loading) {
+    setItemName(itemInfo[0].name);
+
     return (
       <Collection>
+        <CollectionItem style={{ padding: '15px' }}>
+          {itemInfo[0].name} <Badge>In Stock</Badge>
+        </CollectionItem>
         {itemInfo.map((item) => (
           <CollectionItem
             style={{ padding: '15px', backgroundColor: '#616161' }}
           >
             <Link to={`${url}/${item.subKey}`} className='white-text'>
-              {item.name}--Price:{item.pricePerOne}--For Sale:{item.count}
-              --Enhance Level:{item.subKey}
+              {item.name}--Price:{item.pricePerOne}--Enhance Level:{item.subKey}
+              <Badge className='teal white-text'>{item.count}</Badge>
             </Link>
           </CollectionItem>
         ))}

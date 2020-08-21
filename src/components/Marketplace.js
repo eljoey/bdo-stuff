@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import Items from './Items';
 import List from './List';
@@ -8,6 +8,7 @@ import { Col, Row } from 'react-materialize';
 
 const Marketplace = () => {
   let { path, url } = useRouteMatch();
+  const [itemName, setItemName] = useState(null);
 
   return (
     <Row className='grey darken-3'>
@@ -18,15 +19,15 @@ const Marketplace = () => {
       <Col s={8} l={9}>
         <Switch>
           <Route path={`${path}/list/:main-:sub/:itemId/:enhanceLevel`}>
-            <ItemPricing />
+            <ItemPricing itemName={itemName} />
           </Route>
           <Route path={`${path}/list/:main-:sub/:itemId`}>
-            <ItemInfo />
+            <ItemInfo setItemName={setItemName} />
           </Route>
           <Route path={`${path}/list/:main-:sub`}>
             <Items className='col s8' />
           </Route>
-          <Route path={path}>THIS IS THE DEFAULT PAGE</Route>
+          <Route path={path} />
         </Switch>
       </Col>
     </Row>
