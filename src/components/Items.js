@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useRouteMatch } from 'react-router-dom';
 import apiService from './services/api';
-import { Row, Col, Preloader } from 'react-materialize';
+import {
+  Row,
+  Col,
+  Preloader,
+  Collection,
+  CollectionItem,
+  Badge,
+} from 'react-materialize';
 
 const Items = () => {
   const { main, sub } = useParams();
@@ -22,15 +29,18 @@ const Items = () => {
 
   if (!loading) {
     return (
-      <div>
+      <Collection>
         {itemList.map((item) => (
-          <div>
-            <Link to={`${url}/${item.mainKey}`}>
+          <CollectionItem
+            style={{ padding: '15px', backgroundColor: '#616161' }}
+          >
+            <Link to={`${url}/${item.mainKey}`} className='white-text'>
               {item.name}--Price:{item.minPrice}--For Sale:{item.sumCount}
+              <Badge className='teal white-text'>{item.sumCount}</Badge>
             </Link>
-          </div>
+          </CollectionItem>
         ))}
-      </div>
+      </Collection>
     );
   } else {
     return (

@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import apiService from './services/api';
-import { Row, Col, Preloader } from 'react-materialize';
+import {
+  Row,
+  Col,
+  Preloader,
+  Collection,
+  CollectionItem,
+} from 'react-materialize';
 
 const ItemInfo = () => {
   const { itemId, enhanceLevel } = useParams();
@@ -25,11 +31,17 @@ const ItemInfo = () => {
 
   if (!loading) {
     return (
-      <div>
+      <Collection>
         {itemPricing.map((item) => (
-          <div>{`Price: ${item.pricePerOne} -- Count: ${item.sellCount}`}</div>
+          <CollectionItem
+            style={{
+              padding: '15px',
+              backgroundColor: '#616161',
+              color: 'white',
+            }}
+          >{`Price: ${item.pricePerOne} -- Count: ${item.sellCount}`}</CollectionItem>
         ))}
-      </div>
+      </Collection>
     );
   } else {
     return (
