@@ -39,7 +39,7 @@ const ItemPricing = () => {
   if (!loading) {
     return (
       <Collection>
-        <CollectionItem className='center-align'>
+        <CollectionItem className='center-align' style={{ padding: '15px' }}>
           {itemName}
           <Badge>In Stock</Badge>
         </CollectionItem>
