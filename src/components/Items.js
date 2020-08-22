@@ -43,7 +43,7 @@ const Items = () => {
           >
             <Link to={`${url}/${item.mainKey}`} className='white-text'>
               {item.name}
-              <Badge className='teal white-text'>{item.sumCount}</Badge>
+              <Badge className='amber-text'>{item.sumCount}</Badge>
             </Link>
           </CollectionItem>
         ))}

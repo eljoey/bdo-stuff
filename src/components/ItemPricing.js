@@ -10,8 +10,6 @@ import {
   Badge,
 } from 'react-materialize';
 
-//TODO: Reverse list to have highest price up top.
-
 const ItemPricing = () => {
   const { itemId, enhanceLevel } = useParams();
   const [itemPricing, setItemPricing] = useState(null);
@@ -22,14 +20,25 @@ const ItemPricing = () => {
     setLoading(true);
 
     const getItemPricing = async () => {
-      const fetchedItemInfo = await apiService.getItemPricing(
+      const fetchedItemPricing = await apiService.getItemPricing(
         itemId,
         enhanceLevel
       );
       const fetchedItemName = await apiService.getItemInfo(itemId);
 
+      // Shorten and sort by highest value first.
+      const formattedItemInfo = fetchedItemPricing.marketConditionList
+        .map((item) => {
+          return {
+            sellCount: item.sellCount,
+            buyCount: item.buyCount,
+            pricePerOne: item.pricePerOne,
+          };
+        })
+        .reverse();
+
       setItemName(fetchedItemName.detailList[0].name);
-      setItemPricing(fetchedItemInfo.marketConditionList);
+      setItemPricing(formattedItemInfo);
       setLoading(false);
     };
 
@@ -52,8 +61,13 @@ const ItemPricing = () => {
             }}
           >
             <div>
-              {`$${item.pricePerOne}`}
-              <Badge className='teal white-text'>{item.sellCount}</Badge>
+              {`$${item.pricePerOne
+                .toString()
+                .replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,')}`}{' '}
+              <Badge className='amber-text'>{item.sellCount}</Badge>
+              <Badge className='red-text text-lighten-2'>
+                {item.buyCount === 0 ? '' : `(Orders: ${item.buyCount})`}
+              </Badge>
             </div>
           </CollectionItem>
         ))}

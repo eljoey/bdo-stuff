@@ -14,7 +14,7 @@ const ListItems = ({ subTabs, tabId, url }) => {
             to={`${url}/list/${tabId}-${tab.option}`}
             className={
               selectedItem === `${tabId}-${tab.option}`
-                ? 'teal-text'
+                ? 'amber-text'
                 : 'black-text'
             }
           >

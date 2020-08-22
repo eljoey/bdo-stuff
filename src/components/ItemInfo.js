@@ -10,6 +10,9 @@ import {
   Badge,
 } from 'react-materialize';
 
+// TODO: Display Enhance levels better
+//     - Better Styling
+
 const ItemInfo = ({ setItemName }) => {
   const { itemId } = useParams();
   const { url } = useRouteMatch();
@@ -21,6 +24,7 @@ const ItemInfo = ({ setItemName }) => {
 
     const getItemInfo = async () => {
       const fetchedItemInfo = await apiService.getItemInfo(itemId);
+
       setItemInfo(fetchedItemInfo.detailList);
       setLoading(false);
     };
@@ -30,6 +34,52 @@ const ItemInfo = ({ setItemName }) => {
 
   if (!loading) {
     setItemName(itemInfo[0].name);
+
+    const accessoryCheck = (category, index) => {
+      const names = {
+        accessories: {
+          0: '',
+          1: 'PRI: ',
+          2: 'DUO: ',
+          3: 'TRI: ',
+          4: 'TET: ',
+          5: 'PEN: ',
+        },
+        others: {
+          0: '',
+          1: '+1 ',
+          2: '+2 ',
+          3: '+3 ',
+          4: '+4 ',
+          5: '+5 ',
+        },
+      };
+
+      if (category === 20) {
+        return names.accessories[index];
+      } else {
+        return names.others[index];
+      }
+    };
+
+    const enhanceLevelTitle = {
+      0: accessoryCheck(itemInfo[0].mainCategory, 0),
+      1: accessoryCheck(itemInfo[0].mainCategory, 1),
+      2: accessoryCheck(itemInfo[0].mainCategory, 2),
+      3: accessoryCheck(itemInfo[0].mainCategory, 3),
+      4: accessoryCheck(itemInfo[0].mainCategory, 4),
+      5: accessoryCheck(itemInfo[0].mainCategory, 5),
+      8: '+8 ',
+      11: '+11 ',
+      13: '+13 ',
+      14: '+14 ',
+      15: '+15 ',
+      16: 'PRI: ',
+      17: 'DUO: ',
+      18: 'TRI: ',
+      19: 'TET: ',
+      20: 'PEN: ',
+    };
 
     return (
       <Collection>
@@ -41,9 +91,13 @@ const ItemInfo = ({ setItemName }) => {
             style={{ padding: '15px', backgroundColor: '#616161' }}
           >
             <Link to={`${url}/${item.subKey}`} className='white-text'>
-              {item.name}--Price:{item.pricePerOne}--Enhance Level:{item.subKey}
-              <Badge className='teal white-text'>{item.count}</Badge>
+              {`${enhanceLevelTitle[item.subKey]}${item.name}`}
+              {'  '}
+              <span className='grey-text'>{`$${item.pricePerOne
+                .toString()
+                .replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,')}`}</span>
             </Link>
+            <Badge className='amber-text'>{item.count}</Badge>
           </CollectionItem>
         ))}
       </Collection>
