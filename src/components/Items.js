@@ -11,8 +11,6 @@ import {
 } from 'react-materialize';
 import mpList from './assets/mpTabs';
 
-// TODO: have display of name show correct enhancement level
-
 const Items = () => {
   const { main, sub } = useParams();
   const { url } = useRouteMatch();

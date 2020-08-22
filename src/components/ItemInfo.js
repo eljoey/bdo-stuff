@@ -10,9 +10,6 @@ import {
   Badge,
 } from 'react-materialize';
 
-// TODO: Display Enhance levels better
-//     - Better Styling
-
 const ItemInfo = ({ setItemName }) => {
   const { itemId } = useParams();
   const { url } = useRouteMatch();
