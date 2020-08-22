@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link, useRouteMatch } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import apiService from './services/api';
 import {
   Row,
@@ -9,41 +9,39 @@ import {
   CollectionItem,
   Badge,
 } from 'react-materialize';
-import mpList from './assets/mpTabs';
 
-// TODO: have display of name show correct enhancement level
-
-const Items = () => {
-  const { main, sub } = useParams();
-  const { url } = useRouteMatch();
-  const [itemList, setItemList] = useState(null);
+const Search = () => {
+  const { searchTerm } = useParams();
+  const [searchResults, setSearchResults] = useState();
   const [loading, setLoading] = useState(true);
-  const findMpTabIndex = mpList.indexOf(
-    mpList.find((e) => e.tab === Number(main))
-  );
 
   useEffect(() => {
     setLoading(true);
+    const getSearchResult = async () => {
+      const fetchedSearch = await apiService.getItemSearch(searchTerm);
 
-    const fetchItemList = async () => {
-      const fetchedItemList = await apiService.getItemList(main, sub);
-      setItemList(fetchedItemList.marketList);
+      setSearchResults(fetchedSearch.list || []);
       setLoading(false);
     };
-    fetchItemList();
-  }, [main, sub]);
+
+    getSearchResult();
+  }, [searchTerm]);
 
   if (!loading) {
     return (
       <Collection>
         <CollectionItem style={{ padding: '15px' }}>
-          {mpList[findMpTabIndex].subTabs[Number(sub) - 1].title}
+          {searchTerm}
         </CollectionItem>
-        {itemList.map((item) => (
+
+        {searchResults.map((item) => (
           <CollectionItem
             style={{ padding: '15px', backgroundColor: '#616161' }}
           >
-            <Link to={`${url}/${item.mainKey}`} className='white-text'>
+            <Link
+              to={`/marketplace/list/search-term/${item.mainKey}`}
+              className='white-text'
+            >
               {item.name}
               <Badge className='amber-text'>{item.sumCount}</Badge>
             </Link>
@@ -64,4 +62,4 @@ const Items = () => {
   }
 };
 
-export default Items;
+export default Search;

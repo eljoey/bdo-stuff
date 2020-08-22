@@ -25,8 +25,17 @@ const getItemPricing = async (id, level) => {
   return itemPricing.data;
 };
 
+const getItemSearch = async (value) => {
+  const searchResult = await axios.get(
+    `${baseUrl}/item-search/${value}${region}`
+  );
+
+  return searchResult.data;
+};
+
 export default {
   getItemList,
   getItemInfo,
   getItemPricing,
+  getItemSearch,
 };
