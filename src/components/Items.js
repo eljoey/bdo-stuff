@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useRouteMatch } from 'react-router-dom';
 import apiService from './services/api';
-import {
-  Row,
-  Col,
-  ProgressBar,
-  Collection,
-  CollectionItem,
-  Badge,
-} from 'react-materialize';
+import { Collection, CollectionItem, Badge } from 'react-materialize';
 import mpList from './assets/mpTabs';
 import helpers from './utils/helpers';
+import Loading from './Loading';
 
 const Items = () => {
   const { main, sub } = useParams();
@@ -56,13 +50,7 @@ const Items = () => {
       </Collection>
     );
   } else {
-    return (
-      <Row>
-        <Col s={12}>
-          <ProgressBar />
-        </Col>
-      </Row>
-    );
+    return <Loading />;
   }
 };
 

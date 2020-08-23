@@ -184,6 +184,11 @@ const mpTabs = [
         option: 17,
       },
       {
+        title: 'WHY WOULD YOU SKIP A NUMBER BDO',
+        option: 18,
+      },
+
+      {
         title: 'Jordun',
         option: 19,
       },

@@ -27,7 +27,7 @@ const MarketplaceHeader = () => {
       brand={
         <i
           onClick={() => history.goBack()}
-          className='material-icons'
+          className='material-icons brand-logo'
           style={{ cursor: 'pointer', paddingLeft: '5px' }}
         >
           keyboard_arrow_left
@@ -36,8 +36,9 @@ const MarketplaceHeader = () => {
       style={{
         backgroundColor: '#616161',
         border: 'white .5px solid',
-        marginTop: '5px',
+        marginTop: '8px',
       }}
+      className=' hide-on-med-and-down'
     >
       <Icon>search</Icon>
       <NavItem>
@@ -45,7 +46,10 @@ const MarketplaceHeader = () => {
           <TextInput
             placeholder='Search'
             value={searchValue}
-            style={{ color: 'white' }}
+            style={{
+              color: 'white',
+              padding: '1px',
+            }}
             onChange={handleChange}
           ></TextInput>
         </form>

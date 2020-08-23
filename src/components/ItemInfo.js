@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useRouteMatch } from 'react-router-dom';
 import apiService from './services/api';
-import {
-  Row,
-  Col,
-  Collection,
-  CollectionItem,
-  Badge,
-  ProgressBar,
-} from 'react-materialize';
+import { Collection, CollectionItem, Badge } from 'react-materialize';
 import helpers from './utils/helpers';
+import Loading from './Loading';
 
 const ItemInfo = ({ setItemName }) => {
   const { itemId } = useParams();
@@ -104,13 +98,7 @@ const ItemInfo = ({ setItemName }) => {
       </Collection>
     );
   } else {
-    return (
-      <Row>
-        <Col s={12}>
-          <ProgressBar />
-        </Col>
-      </Row>
-    );
+    return <Loading />;
   }
 };
 

@@ -8,21 +8,28 @@ const ListItems = ({ subTabs, tabId, url }) => {
 
   return (
     <>
-      {subTabs.map((tab) => (
-        <>
-          <Link
-            to={`${url}/list/${tabId}-${tab.option}`}
-            className={
-              selectedItem === `${tabId}-${tab.option}`
-                ? 'amber-text'
-                : 'black-text'
-            }
-          >
-            {tab.title}
-          </Link>
-          <div className='divider'></div>
-        </>
-      ))}
+      {subTabs.map((tab) => {
+        // BDO Skips 18 on Awakening Weapons for some god awful reasoning.
+        if (tabId === 10 && tab.option === 18) {
+          return;
+        } else {
+          return (
+            <>
+              <Link
+                to={`${url}/list/${tabId}-${tab.option}`}
+                className={
+                  selectedItem === `${tabId}-${tab.option}`
+                    ? 'amber-text'
+                    : 'black-text'
+                }
+              >
+                {tab.title}
+              </Link>
+              <div className='divider'></div>
+            </>
+          );
+        }
+      })}
     </>
   );
 };

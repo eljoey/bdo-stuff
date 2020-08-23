@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import apiService from './services/api';
-import {
-  Row,
-  Col,
-  Collection,
-  CollectionItem,
-  Badge,
-  ProgressBar,
-} from 'react-materialize';
+import { Collection, CollectionItem, Badge } from 'react-materialize';
+import Loading from './Loading';
 
 const ItemPricing = () => {
   const { itemId, enhanceLevel } = useParams();
@@ -65,13 +59,7 @@ const ItemPricing = () => {
       </Collection>
     );
   } else {
-    return (
-      <Row>
-        <Col s={12}>
-          <ProgressBar />
-        </Col>
-      </Row>
-    );
+    return <Loading />;
   }
 };
 
