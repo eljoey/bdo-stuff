@@ -45,6 +45,7 @@ const MarketplaceHeader = () => {
           <TextInput
             placeholder='Search'
             value={searchValue}
+            style={{ color: 'white' }}
             onChange={handleChange}
           ></TextInput>
         </form>

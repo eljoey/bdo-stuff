@@ -4,7 +4,7 @@ import apiService from './services/api';
 import {
   Row,
   Col,
-  Preloader,
+  ProgressBar,
   Collection,
   CollectionItem,
   Badge,
@@ -51,13 +51,11 @@ const Items = () => {
     );
   } else {
     return (
-      <div style={{ height: '100vh' }} className='valign-wrapper center-align'>
-        <Row>
-          <Col>
-            <Preloader active color='blue' flashing={false} className='big' />
-          </Col>
-        </Row>
-      </div>
+      <Row>
+        <Col s={12}>
+          <ProgressBar />
+        </Col>
+      </Row>
     );
   }
 };

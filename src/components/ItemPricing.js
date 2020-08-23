@@ -4,10 +4,10 @@ import apiService from './services/api';
 import {
   Row,
   Col,
-  Preloader,
   Collection,
   CollectionItem,
   Badge,
+  ProgressBar,
 } from 'react-materialize';
 
 const ItemPricing = () => {
@@ -26,16 +26,7 @@ const ItemPricing = () => {
       );
       const fetchedItemName = await apiService.getItemInfo(itemId);
 
-      // Shorten and sort by highest value first.
-      const formattedItemInfo = fetchedItemPricing.marketConditionList
-        .map((item) => {
-          return {
-            sellCount: item.sellCount,
-            buyCount: item.buyCount,
-            pricePerOne: item.pricePerOne,
-          };
-        })
-        .reverse();
+      const formattedItemInfo = fetchedItemPricing.marketConditionList.reverse();
 
       setItemName(fetchedItemName.detailList[0].name);
       setItemPricing(formattedItemInfo);
@@ -75,13 +66,11 @@ const ItemPricing = () => {
     );
   } else {
     return (
-      <div style={{ height: '100vh' }} className='valign-wrapper center-align'>
-        <Row>
-          <Col>
-            <Preloader active color='blue' flashing={false} className='big' />
-          </Col>
-        </Row>
-      </div>
+      <Row>
+        <Col s={12}>
+          <ProgressBar />
+        </Col>
+      </Row>
     );
   }
 };

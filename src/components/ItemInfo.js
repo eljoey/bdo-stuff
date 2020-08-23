@@ -4,10 +4,10 @@ import apiService from './services/api';
 import {
   Row,
   Col,
-  Preloader,
   Collection,
   CollectionItem,
   Badge,
+  ProgressBar,
 } from 'react-materialize';
 
 const ItemInfo = ({ setItemName }) => {
@@ -101,13 +101,11 @@ const ItemInfo = ({ setItemName }) => {
     );
   } else {
     return (
-      <div style={{ height: '100vh' }} className='valign-wrapper center-align'>
-        <Row>
-          <Col>
-            <Preloader active color='blue' flashing={false} className='big' />
-          </Col>
-        </Row>
-      </div>
+      <Row>
+        <Col s={12}>
+          <ProgressBar />
+        </Col>
+      </Row>
     );
   }
 };
