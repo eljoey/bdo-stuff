@@ -10,6 +10,7 @@ import {
   Badge,
 } from 'react-materialize';
 import mpList from './assets/mpTabs';
+import helpers from './utils/helpers';
 
 const Items = () => {
   const { main, sub } = useParams();
@@ -30,18 +31,23 @@ const Items = () => {
     };
     fetchItemList();
   }, [main, sub]);
+  console.log(itemList);
 
   if (!loading) {
     return (
       <Collection>
         <CollectionItem style={{ padding: '15px' }}>
           {mpList[findMpTabIndex].subTabs[Number(sub) - 1].title}
+          <Badge>In Stock</Badge>
         </CollectionItem>
         {itemList.map((item) => (
           <CollectionItem
             style={{ padding: '15px', backgroundColor: '#616161' }}
           >
-            <Link to={`${url}/${item.mainKey}`} className='white-text'>
+            <Link
+              to={`${url}/${item.mainKey}`}
+              className={helpers.getTextColor(item.grade)}
+            >
               {item.name}
               <Badge className='amber-text'>{item.sumCount}</Badge>
             </Link>

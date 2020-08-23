@@ -9,6 +9,7 @@ import {
   Badge,
   ProgressBar,
 } from 'react-materialize';
+import helpers from './utils/helpers';
 
 const ItemInfo = ({ setItemName }) => {
   const { itemId } = useParams();
@@ -87,7 +88,10 @@ const ItemInfo = ({ setItemName }) => {
           <CollectionItem
             style={{ padding: '15px', backgroundColor: '#616161' }}
           >
-            <Link to={`${url}/${item.subKey}`} className='white-text'>
+            <Link
+              to={`${url}/${item.subKey}`}
+              className={helpers.getTextColor(item.grade)}
+            >
               {`${enhanceLevelTitle[item.subKey]}${item.name}`}
               {'  '}
               <span className='grey-text'>{`$${item.pricePerOne
