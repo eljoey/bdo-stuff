@@ -1,7 +1,11 @@
 import axios from 'axios';
 
 const baseUrl = 'https://bdo-api-helper.herokuapp.com/marketplace-clone';
-const region = '?region=na';
+let region = `?region=${JSON.parse(localStorage.getItem('region'))}`;
+
+const setRegionLocation = (location) => {
+  region = `?region=${location}`;
+};
 
 const getItemList = async (main, sub) => {
   const itemList = await axios.get(
@@ -38,4 +42,5 @@ export default {
   getItemInfo,
   getItemPricing,
   getItemSearch,
+  setRegionLocation,
 };

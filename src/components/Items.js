@@ -25,7 +25,6 @@ const Items = () => {
     };
     fetchItemList();
   }, [main, sub]);
-  console.log(itemList);
 
   if (!loading) {
     return (
