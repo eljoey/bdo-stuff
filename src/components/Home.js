@@ -14,7 +14,7 @@ const Home = () => {
               <h3 className=''>BDO-Stuff </h3>
               <div className='divider black' />
               <h4 className='subtext-header mt-2 mb-4 '>
-                Your place for random bdo stuff.
+                Your place for bdo stuff.
               </h4>
             </Col>
           </Row>

@@ -20,7 +20,11 @@ const Items = () => {
 
     const fetchItemList = async () => {
       const fetchedItemList = await apiService.getItemList(main, sub);
-      setItemList(fetchedItemList.marketList);
+
+      const sortedItemInfo = fetchedItemList.marketList.sort((a, b) =>
+        a.name.localeCompare(b.name, 'en', { sensitivity: 'base' })
+      );
+      setItemList(sortedItemInfo);
       setLoading(false);
     };
     fetchItemList();
