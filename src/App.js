@@ -4,10 +4,10 @@ import SiteMenu from './components/SiteMenu';
 
 function App() {
   return (
-    <div>
+    <>
       <Header />
       <SiteMenu />
-    </div>
+    </>
   );
 }
 

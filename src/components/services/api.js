@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://bdo-api-helper.herokuapp.com/marketplace-clone';
+const baseUrl = 'https://bdo-api-helper.herokuapp.com';
 let region = `?region=${JSON.parse(localStorage.getItem('region'))}`;
 
 const setRegionLocation = (location) => {
@@ -9,21 +9,23 @@ const setRegionLocation = (location) => {
 
 const getItemList = async (main, sub) => {
   const itemList = await axios.get(
-    `${baseUrl}/item-list/${main}/${sub}${region}`
+    `${baseUrl}/marketplace-clone/item-list/${main}/${sub}${region}`
   );
 
   return itemList.data;
 };
 
 const getItemInfo = async (id) => {
-  const itemInfo = await axios.get(`${baseUrl}/item-info/${id}${region}`);
+  const itemInfo = await axios.get(
+    `${baseUrl}/marketplace-clone/item-info/${id}${region}`
+  );
 
   return itemInfo.data;
 };
 
 const getItemPricing = async (id, level) => {
   const itemPricing = await axios.get(
-    `${baseUrl}/item-pricing/${id}/${level}${region}`
+    `${baseUrl}/marketplace-clone/item-pricing/${id}/${level}${region}`
   );
 
   return itemPricing.data;
@@ -31,10 +33,26 @@ const getItemPricing = async (id, level) => {
 
 const getItemSearch = async (value) => {
   const searchResult = await axios.get(
-    `${baseUrl}/item-search/${value}${region}`
+    `${baseUrl}/marketplace-clone/item-search/${value}${region}`
   );
 
   return searchResult.data;
+};
+
+const getCaphrasResult = async (
+  item,
+  enhLevel,
+  curLevel,
+  desiredLevel,
+  region
+) => {
+  console.log(item, enhLevel, curLevel, desiredLevel, region);
+
+  const caphrasResult = await axios.get(
+    `${baseUrl}/api/caphras-calc?item=${item}&enhLevel=${enhLevel}&curLevel=${curLevel}&desiredLevel=${desiredLevel}&region=${region}`
+  );
+
+  return caphrasResult.data;
 };
 
 export default {
@@ -43,4 +61,5 @@ export default {
   getItemPricing,
   getItemSearch,
   setRegionLocation,
+  getCaphrasResult,
 };
