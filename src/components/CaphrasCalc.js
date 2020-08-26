@@ -17,7 +17,7 @@ const CaphrasCalc = () => {
           <Route path={`${path}/result`}>
             <CaphrasResult />
           </Route>
-          <Route path={`${path}`}>Home</Route>
+          <Route path={`${path}`}></Route>
         </Switch>
       </Col>
     </Row>

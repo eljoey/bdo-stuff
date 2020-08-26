@@ -35,21 +35,42 @@ const CaphrasResult = () => {
   } else {
     return (
       <div
+        className='center-align'
         style={{
           height: '95vh',
           border: 'solid 1px white',
           marginTop: '8px',
           marginBottom: '8px',
           backgroundColor: '#616161',
-          paddingLeft: '15px',
+          paddingTop: '55px',
         }}
       >
-        <p className='white-text '>
-          Total Cost: $
-          {results.totalCaphrasPrice
-            .toString()
-            .replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,')}
-        </p>
+        <div className='center-align'>
+          <h2 className='white-text'>Total Cost:</h2>
+          <p className='green-text' style={{ fontSize: '32px' }}>
+            ${' '}
+            {results.totalCaphrasPrice
+              .toString()
+              .replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,')}
+          </p>
+        </div>
+        <div className='white-text'>
+          <h5>Caphras Used: </h5>
+          <p style={{ fontSize: '20px' }}>
+            {results.caphrasNeeded
+              .toString()
+              .replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,')}
+          </p>
+        </div>
+        <div className='white-text'>
+          <h5>Caphras Price:</h5>
+          <p style={{ fontSize: '20px' }}>
+            $
+            {results.caphrasPrice
+              .toString()
+              .replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,')}
+          </p>
+        </div>
       </div>
     );
   }

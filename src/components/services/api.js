@@ -46,8 +46,6 @@ const getCaphrasResult = async (
   desiredLevel,
   region
 ) => {
-  console.log(item, enhLevel, curLevel, desiredLevel, region);
-
   const caphrasResult = await axios.get(
     `${baseUrl}/api/caphras-calc?item=${item}&enhLevel=${enhLevel}&curLevel=${curLevel}&desiredLevel=${desiredLevel}&region=${region}`
   );

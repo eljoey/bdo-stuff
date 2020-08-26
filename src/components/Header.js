@@ -44,6 +44,12 @@ const NewHeader = () => {
         >
           Caphras Calculator
         </Link>
+        <Link
+          to='/upgrade-calculator'
+          className={location === 'upgrade-calculator' ? 'grey darken-3' : ''}
+        >
+          Upgrade Calculator
+        </Link>
       </Navbar>
     </div>
   );
