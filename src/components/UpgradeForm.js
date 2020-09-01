@@ -22,6 +22,64 @@ const UpgradeForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const itemData = {
+      characterClass: {
+        name: e.target.class.value,
+      },
+      mainHand: {
+        name: e.target.mainhand.value,
+        enhLevel: e.target.mainhandEnhLevel.value,
+      },
+      offhand: {
+        name: e.target.offhand.value,
+        enhLevel: e.target.offhandEnhLevel.value,
+      },
+      awakening: {
+        name: e.target.awakening.value,
+        enhLevel: e.target.awakeningEnhLevel.value,
+      },
+      gloves: {
+        name: e.target.gloves.value,
+        enhLevel: e.target.glovesEnhLevel.value,
+      },
+      helm: {
+        name: e.target.helm.value,
+        enhLevel: e.target.helmEnhLevel.value,
+      },
+      armor: {
+        name: e.target.armor.value,
+        enhLevel: e.target.armorEnhLevel.value,
+      },
+      boots: {
+        name: e.target.boots.value,
+        enhLevel: e.target.bootsEnhLevel.value,
+      },
+      ring1: {
+        name: e.target.ring1.value,
+        enhLevel: e.target.ring1EnhLevel.value,
+      },
+      ring2: {
+        name: e.target.ring2.value,
+        enhLevel: e.target.ring2EnhLevel.value,
+      },
+      earring1: {
+        name: e.target.earring1.value,
+        enhLevel: e.target.earring1EnhLevel.value,
+      },
+      earring2: {
+        name: e.target.earring2.value,
+        enhLevel: e.target.earring2EnhLevel.value,
+      },
+      necklace: {
+        name: e.target.necklace.value,
+        enhLevel: e.target.necklaceEnhLevel.value,
+      },
+      belt: {
+        name: e.target.mainhand.value,
+        enhLevel: e.target.mainhandEnhLevel.value,
+      },
+    };
+    //TODO: handle form.
   };
 
   return (
@@ -93,7 +151,7 @@ const UpgradeForm = () => {
 
           <Select
             s={5}
-            id='enhLevel'
+            id='mainhandEnhLevel'
             label='Enhance Level'
             multiple={false}
             options={selectOptions}
@@ -121,7 +179,7 @@ const UpgradeForm = () => {
 
           <Select
             s={5}
-            id='enhLevel'
+            id='offhandEnhLevel'
             label='Enhance Level'
             multiple={false}
             options={selectOptions}
@@ -149,7 +207,7 @@ const UpgradeForm = () => {
 
           <Select
             s={5}
-            id='enhLevel'
+            id='awakeningEnhLevel'
             label='Enhance Level'
             multiple={false}
             options={selectOptions}
@@ -177,7 +235,7 @@ const UpgradeForm = () => {
 
           <Select
             s={5}
-            id='enhLevel'
+            id='glovesEnhLevel'
             label='Enhance Level'
             multiple={false}
             options={selectOptions}
@@ -205,7 +263,7 @@ const UpgradeForm = () => {
 
           <Select
             s={5}
-            id='enhLevel'
+            id='helmEnhLevel'
             label='Enhance Level'
             multiple={false}
             options={selectOptions}
@@ -234,7 +292,7 @@ const UpgradeForm = () => {
 
           <Select
             s={5}
-            id='enhLevel'
+            id='armorEnhLevel'
             label='Enhance Level'
             multiple={false}
             options={selectOptions}
@@ -262,7 +320,7 @@ const UpgradeForm = () => {
 
           <Select
             s={5}
-            id='enhLevel'
+            id='bootsEnhLevel'
             label='Enhance Level'
             multiple={false}
             options={selectOptions}
@@ -296,7 +354,7 @@ const UpgradeForm = () => {
 
           <Select
             s={5}
-            id='enhLevel'
+            id='ring1EnhLevel'
             label='Enhance Level'
             multiple={false}
             options={selectOptions}
@@ -330,7 +388,7 @@ const UpgradeForm = () => {
 
           <Select
             s={5}
-            id='enhLevel'
+            id='ring2EnhLevel'
             label='Enhance Level'
             multiple={false}
             options={selectOptions}
@@ -363,7 +421,7 @@ const UpgradeForm = () => {
 
           <Select
             s={5}
-            id='enhLevel'
+            id='earring1EnhLevel'
             label='Enhance Level'
             multiple={false}
             options={selectOptions}
@@ -396,7 +454,7 @@ const UpgradeForm = () => {
 
           <Select
             s={5}
-            id='enhLevel'
+            id='earring2EnhLevel'
             label='Enhance Level'
             multiple={false}
             options={selectOptions}
@@ -428,7 +486,7 @@ const UpgradeForm = () => {
 
           <Select
             s={5}
-            id='enhLevel'
+            id='necklaceEnhLevel'
             label='Enhance Level'
             multiple={false}
             options={selectOptions}
@@ -461,7 +519,7 @@ const UpgradeForm = () => {
 
           <Select
             s={5}
-            id='enhLevel'
+            id='beltEnhLevel'
             label='Enhance Level'
             multiple={false}
             options={selectOptions}
