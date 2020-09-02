@@ -53,6 +53,19 @@ const getCaphrasResult = async (
   return caphrasResult.data;
 };
 
+const getItemUpgrade = async (formData, region) => {
+  if (region === null || formData === null) {
+    console.log('returning');
+    return;
+  }
+  const results = await axios.post(
+    `${baseUrl}/api/item-upgrade?region=${region}`,
+    formData
+  );
+
+  return results.data;
+};
+
 export default {
   getItemList,
   getItemInfo,
@@ -60,4 +73,5 @@ export default {
   getItemSearch,
   setRegionLocation,
   getCaphrasResult,
+  getItemUpgrade,
 };

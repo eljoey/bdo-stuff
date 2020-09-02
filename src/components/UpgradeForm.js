@@ -1,7 +1,9 @@
 import React from 'react';
 import { Select, Button, Icon } from 'react-materialize';
+import { useHistory } from 'react-router-dom';
 
 const UpgradeForm = () => {
+  const history = useHistory();
   const selectOptions = {
     classes: '',
     dropdownOptions: {
@@ -20,66 +22,68 @@ const UpgradeForm = () => {
     },
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const region = e.target.region.value;
     const itemData = {
       characterClass: {
         name: e.target.class.value,
       },
       mainHand: {
         name: e.target.mainhand.value,
-        enhLevel: e.target.mainhandEnhLevel.value,
+        enhLevel: Number(e.target.mainhandEnhLevel.value),
       },
       offhand: {
         name: e.target.offhand.value,
-        enhLevel: e.target.offhandEnhLevel.value,
+        enhLevel: Number(e.target.offhandEnhLevel.value),
       },
       awakening: {
         name: e.target.awakening.value,
-        enhLevel: e.target.awakeningEnhLevel.value,
+        enhLevel: Number(e.target.awakeningEnhLevel.value),
       },
       gloves: {
         name: e.target.gloves.value,
-        enhLevel: e.target.glovesEnhLevel.value,
+        enhLevel: Number(e.target.glovesEnhLevel.value),
       },
       helm: {
         name: e.target.helm.value,
-        enhLevel: e.target.helmEnhLevel.value,
+        enhLevel: Number(e.target.helmEnhLevel.value),
       },
       armor: {
         name: e.target.armor.value,
-        enhLevel: e.target.armorEnhLevel.value,
+        enhLevel: Number(e.target.armorEnhLevel.value),
       },
       boots: {
         name: e.target.boots.value,
-        enhLevel: e.target.bootsEnhLevel.value,
+        enhLevel: Number(e.target.bootsEnhLevel.value),
       },
-      ring1: {
-        name: e.target.ring1.value,
-        enhLevel: e.target.ring1EnhLevel.value,
+      ring: {
+        name: e.target.ring.value,
+        enhLevel: Number(e.target.ringEnhLevel.value),
       },
-      ring2: {
-        name: e.target.ring2.value,
-        enhLevel: e.target.ring2EnhLevel.value,
-      },
-      earring1: {
-        name: e.target.earring1.value,
-        enhLevel: e.target.earring1EnhLevel.value,
-      },
-      earring2: {
-        name: e.target.earring2.value,
-        enhLevel: e.target.earring2EnhLevel.value,
+      earring: {
+        name: e.target.earring.value,
+        enhLevel: Number(e.target.earringEnhLevel.value),
       },
       necklace: {
         name: e.target.necklace.value,
-        enhLevel: e.target.necklaceEnhLevel.value,
+        enhLevel: Number(e.target.necklaceEnhLevel.value),
       },
       belt: {
-        name: e.target.mainhand.value,
-        enhLevel: e.target.mainhandEnhLevel.value,
+        name: e.target.belt.value,
+        enhLevel: Number(e.target.beltEnhLevel.value),
       },
     };
-    //TODO: handle form.
+    localStorage.setItem(
+      'formData',
+      JSON.stringify({
+        data: itemData,
+        region,
+      })
+    );
+
+    history.push('/upgrade-calculator/results');
   };
 
   return (
@@ -336,8 +340,8 @@ const UpgradeForm = () => {
         <div>
           <Select
             s={7}
-            id='ring1'
-            label='Ring1'
+            id='ring'
+            label='Worst Ring'
             multiple={false}
             options={selectOptions}
             value='Ring of Crescent Guardian'
@@ -354,7 +358,7 @@ const UpgradeForm = () => {
 
           <Select
             s={5}
-            id='ring1EnhLevel'
+            id='ringEnhLevel'
             label='Enhance Level'
             multiple={false}
             options={selectOptions}
@@ -370,42 +374,8 @@ const UpgradeForm = () => {
         <div>
           <Select
             s={7}
-            id='ring2'
-            label='Ring2'
-            multiple={false}
-            options={selectOptions}
-            value='Ring of Crescent Guardian'
-          >
-            <option value='Ring of Crescent Guardian'>
-              Ring of Crescent Guardian
-            </option>
-            <option value='Tungrad Ring'>Tungrad Ring</option>
-            <option value='Ring of Cadry Guardian'>
-              Ring of Cadry Guardian
-            </option>
-            <option value='Eye of the Ruins Ring'>Eye of the Ruins Ring</option>
-          </Select>
-
-          <Select
-            s={5}
-            id='ring2EnhLevel'
-            label='Enhance Level'
-            multiple={false}
-            options={selectOptions}
-            value='1'
-          >
-            <option value='1'>Pri</option>
-            <option value='2'>Duo</option>
-            <option value='3'>Tri</option>
-            <option value='4'>Tet</option>
-            <option value='5'>Pen</option>
-          </Select>
-        </div>
-        <div>
-          <Select
-            s={7}
-            id='earring1'
-            label='Earring1'
+            id='earring'
+            label='Worst Earring'
             multiple={false}
             options={selectOptions}
             value='Tungrad Earring'
@@ -421,40 +391,7 @@ const UpgradeForm = () => {
 
           <Select
             s={5}
-            id='earring1EnhLevel'
-            label='Enhance Level'
-            multiple={false}
-            options={selectOptions}
-            value='1'
-          >
-            <option value='1'>Pri</option>
-            <option value='2'>Duo</option>
-            <option value='3'>Tri</option>
-            <option value='4'>Tet</option>
-            <option value='5'>Pen</option>
-          </Select>
-        </div>
-        <div>
-          <Select
-            s={7}
-            id='earring2'
-            label='Earring2'
-            multiple={false}
-            options={selectOptions}
-            value='Tungrad Earring'
-          >
-            <option value='Tungrad Earring'>Tungrad Earring</option>
-            <option value='Narc Ear Accessory'>Narc Ear Accessory</option>
-            <option value='Black Distortion Earring'>
-              Black Distortion Earring
-            </option>
-            <option value='Ethereal Earrings'>Ethereal Earrings</option>
-            <option value='Dawn Earring'>Dawn Earring</option>
-          </Select>
-
-          <Select
-            s={5}
-            id='earring2EnhLevel'
+            id='earringEnhLevel'
             label='Enhance Level'
             multiple={false}
             options={selectOptions}
