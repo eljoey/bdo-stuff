@@ -1,6 +1,7 @@
 import React from 'react';
 import { Select, Button, Icon } from 'react-materialize';
 import { useHistory } from 'react-router-dom';
+import './UpgradeForm.css';
 
 const UpgradeForm = () => {
   const history = useHistory();
