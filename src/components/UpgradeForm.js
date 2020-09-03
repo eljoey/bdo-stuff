@@ -128,6 +128,7 @@ const UpgradeForm = () => {
           <option value='archer'>Archer</option>
           <option value='shai'>Shai</option>
           <option value='guardian'>Guardian</option>
+          <option value='hashashin'>Hashashin</option>
         </Select>
         <Select
           s={12}
