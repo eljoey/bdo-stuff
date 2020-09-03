@@ -55,6 +55,10 @@ const mpTabs = [
         title: 'Battle Axe',
         option: 13,
       },
+      {
+        title: 'Shamshir',
+        option: 14,
+      },
     ],
   },
   {
@@ -108,6 +112,10 @@ const mpTabs = [
       {
         title: 'Vitclari',
         option: 12,
+      },
+      {
+        title: 'Haladie',
+        option: 13,
       },
     ],
   },
