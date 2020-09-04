@@ -1,3 +1,10 @@
-.linkHover:hover {
+.dropdown-content li > a,
+.dropdown-content li > span {
+  color: white;
+  background-color: rgb(97, 97, 97);
+}
+
+.dropdown-content li > a:hover,
+.dropdown-content li > span:hover {
   color: rgb(0, 214, 214);
 }

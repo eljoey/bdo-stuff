@@ -104,10 +104,11 @@ const UpgradeForm = () => {
         <Select
           s={12}
           id='class'
-          label='class'
+          label='Class'
           multiple={false}
           options={selectOptions}
           value='dark knight'
+          className='grey darken-3'
         >
           <option value='dark knight'>Dark Knight</option>
           <option value='sorceress'>Sorceress</option>
