@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from './Home';
-import Marketplace from './Marketplace';
-import CaphrasCalc from './CaphrasCalc';
-import UpgradeCalc from './UpgradeCalc';
+import Marketplace from './marketplace/Marketplace';
+import CaphrasCalc from './caphras-calc/CaphrasCalc';
+import UpgradeCalc from './upgrade-calc/UpgradeCalc';
 
 // TODO: Implement Region Selection.
 

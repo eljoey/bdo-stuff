@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Loading from './Loading';
+import Loading from '../Loading';
 import ResultsTable from './ResultsTable';
-import api from './services/api';
+import api from '../services/api';
 import { Tabs, Tab } from 'react-materialize';
 import './UpgradeResults.css';
 

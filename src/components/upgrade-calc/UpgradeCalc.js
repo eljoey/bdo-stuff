@@ -26,12 +26,28 @@ const UpgradeCalc = () => {
                 backgroundColor: '#616161',
               }}
             >
-              <h3>Notes:</h3>
-              <ol>
-                <li>Lots of little problems to work out</li>
-                <li>get the ap/dp/total stat diff between items on backend</li>
-                <li></li>
-              </ol>
+              <h3 className='center-align' style={{}}>
+                Of Note
+              </h3>
+              <div
+                style={{
+                  textIndent: '30px',
+                  fontSize: '16px',
+                  marginLeft: '15px',
+                }}
+              >
+                <p>
+                  This is a very basic upgrade calculator and will not be 100%
+                  accurate. It doesnt account for market availability or ap/dp
+                  brackets. Use your own judgement on what will be best for you.
+                </p>
+                <p>
+                  Once you have input all of your gear values, submit and wait a
+                  few moments for the values to come in. If the backend has been
+                  inactive for a while the response will take a few extra
+                  moments. Please be patient.
+                </p>
+              </div>
             </div>
           </Route>
         </Switch>

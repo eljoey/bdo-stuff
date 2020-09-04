@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import apiService from './services/api';
+import apiService from '../services/api';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
-import Loading from './Loading';
+import Loading from '../Loading';
 
 const CaphrasResult = () => {
   const location = useLocation();
@@ -46,7 +46,7 @@ const CaphrasResult = () => {
         }}
       >
         <div className='center-align'>
-          <h2 className='white-text'>Total Cost:</h2>
+          <h2>Total Cost:</h2>
           <p className='green-text' style={{ fontSize: '32px' }}>
             ${' '}
             {results.totalCaphrasPrice
@@ -54,7 +54,7 @@ const CaphrasResult = () => {
               .replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,')}
           </p>
         </div>
-        <div className='white-text'>
+        <div>
           <h5>Caphras Used: </h5>
           <p style={{ fontSize: '20px' }}>
             {results.caphrasNeeded
@@ -62,8 +62,17 @@ const CaphrasResult = () => {
               .replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,')}
           </p>
         </div>
-        <div className='white-text'>
+        <div>
           <h5>Caphras Price:</h5>
+          <p style={{ fontSize: '20px' }}>
+            $
+            {results.caphrasPrice
+              .toString()
+              .replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,')}
+          </p>
+        </div>
+        <div>
+          <h5>Caphras Available:</h5>
           <p style={{ fontSize: '20px' }}>
             $
             {results.caphrasPrice

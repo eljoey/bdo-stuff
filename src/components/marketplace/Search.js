@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import apiService from './services/api';
+import apiService from '../services/api';
 import {
   Row,
   Col,
@@ -9,11 +9,13 @@ import {
   CollectionItem,
   Badge,
 } from 'react-materialize';
+import helpers from '../utils/helpers';
 
 const Search = () => {
   const { searchTerm } = useParams();
   const [searchResults, setSearchResults] = useState();
   const [loading, setLoading] = useState(true);
+  console.log(searchResults);
 
   useEffect(() => {
     setLoading(true);
@@ -27,11 +29,11 @@ const Search = () => {
     getSearchResult();
   }, [searchTerm]);
 
-  if (!loading) {
+  if (!loading && searchResults.length > 0) {
     return (
       <Collection>
         <CollectionItem style={{ padding: '15px' }}>
-          {searchTerm}
+          {`'${searchTerm}' Results`}
         </CollectionItem>
 
         {searchResults.map((item) => (
@@ -40,13 +42,21 @@ const Search = () => {
           >
             <Link
               to={`/marketplace/list/search-term/${item.mainKey}`}
-              className='white-text'
+              className={helpers.getTextColor(item.grade)}
             >
               {item.name}
               <Badge className='amber-text'>{item.sumCount}</Badge>
             </Link>
           </CollectionItem>
         ))}
+      </Collection>
+    );
+  } else if (!loading && searchResults.length === 0) {
+    return (
+      <Collection>
+        <CollectionItem style={{ padding: '15px' }}>
+          {`No Results for '${searchTerm}' found`}
+        </CollectionItem>
       </Collection>
     );
   } else {

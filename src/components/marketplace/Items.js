@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useRouteMatch } from 'react-router-dom';
-import apiService from './services/api';
+import apiService from '../services/api';
 import { Collection, CollectionItem, Badge } from 'react-materialize';
-import mpList from './assets/mpTabs';
-import helpers from './utils/helpers';
-import Loading from './Loading';
+import mpList from '../assets/mpTabs';
+import helpers from '../utils/helpers';
+import Loading from '../Loading';
 
 const Items = () => {
   const { main, sub } = useParams();

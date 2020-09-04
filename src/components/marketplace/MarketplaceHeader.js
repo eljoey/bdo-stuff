@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Navbar, NavItem, TextInput, Icon, Switch } from 'react-materialize';
-import apiService from './services/api';
+import apiService from '../services/api';
 
 const MarketplaceHeader = () => {
   const history = useHistory();
