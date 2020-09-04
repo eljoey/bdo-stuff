@@ -74,8 +74,7 @@ const CaphrasResult = () => {
         <div>
           <h5>Caphras Available:</h5>
           <p style={{ fontSize: '20px' }}>
-            $
-            {results.caphrasPrice
+            {results.caphrasAvailable
               .toString()
               .replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,')}
           </p>

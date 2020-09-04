@@ -1,7 +1,7 @@
 import React from 'react';
-import { Navbar, Icon } from 'react-materialize';
-import { useLocation, Link } from 'react-router-dom';
-
+import { Navbar, Icon, Dropdown } from 'react-materialize';
+import { useLocation, Link, NavLink } from 'react-router-dom';
+import './header.css';
 const NewHeader = () => {
   // Gets the name of main page (ex. gets 'marketplace' from location '/marketplace/list/1-1')
   const location = useLocation().pathname.split('/')[1];
@@ -50,6 +50,36 @@ const NewHeader = () => {
         >
           Upgrade Calculator
         </Link>
+        <Dropdown
+          id='Dropdown_6'
+          options={{
+            alignment: 'left',
+            autoTrigger: true,
+            closeOnClick: true,
+            constrainWidth: true,
+            container: null,
+            coverTrigger: true,
+            hover: false,
+            inDuration: 150,
+            onCloseEnd: null,
+            onCloseStart: null,
+            onOpenEnd: null,
+            onOpenStart: null,
+            outDuration: 250,
+          }}
+          trigger={
+            <a href='#!'>
+              Misc. Tools <Icon right>arrow_drop_down</Icon>
+            </a>
+          }
+        >
+          <Link to='/ap-brackets' className='grey darken-3 linkHover'>
+            Ap Brackets
+          </Link>
+          <Link to='/misc-links' className='grey darken-3 linkHover'>
+            Misc. Links
+          </Link>
+        </Dropdown>
       </Navbar>
     </div>
   );
