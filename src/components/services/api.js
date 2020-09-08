@@ -53,15 +53,27 @@ const getCaphrasResult = async (
   return caphrasResult.data;
 };
 
-const getItemUpgrade = async (formData, region) => {
+const postItemUpgrade = async (formData, region) => {
   if (region === null || formData === null) {
-    console.log('returning');
     return;
   }
   const results = await axios.post(
     `${baseUrl}/api/item-upgrade?region=${region}`,
     formData
   );
+
+  return results.data;
+};
+
+const getKutumOrNouver = async (
+  baseAp,
+  kutumLvl,
+  kutumCaphra,
+  nouverLvl,
+  nouverCaphra,
+  region
+) => {
+  const results = `${baseUrl}/api/kutum-or-nouver?baseAp=${baseAp}&kutumLvl=${kutumLvl}&kutumCaphra=${kutumCaphra}&nouverLvl=${nouverLvl}&nouverCaphra=${nouverCaphra}&region=${region}`;
 
   return results.data;
 };
@@ -73,5 +85,6 @@ export default {
   getItemSearch,
   setRegionLocation,
   getCaphrasResult,
-  getItemUpgrade,
+  postItemUpgrade,
+  getKutumOrNouver,
 };

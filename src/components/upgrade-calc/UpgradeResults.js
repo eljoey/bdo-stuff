@@ -24,7 +24,7 @@ const UpgradeResults = () => {
     setLoading(true);
 
     const getUpgradeData = async () => {
-      const data = await api.getItemUpgrade(formData, region);
+      const data = await api.postItemUpgrade(formData, region);
       setUpgradeData(data);
       setLoading(false);
     };

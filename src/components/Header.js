@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Icon, Dropdown } from 'react-materialize';
-import { useLocation, Link, NavLink } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import './header.css';
 const NewHeader = () => {
   // Gets the name of main page (ex. gets 'marketplace' from location '/marketplace/list/1-1')
