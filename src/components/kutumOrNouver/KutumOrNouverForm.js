@@ -127,7 +127,7 @@ const CaphrasForm = () => {
         <Select
           s={12}
           id='nouverCaphra'
-          label='NOuver Caphras Level'
+          label='Nouver Caphras Level'
           multiple={false}
           options={selectOptions}
           value='0'
