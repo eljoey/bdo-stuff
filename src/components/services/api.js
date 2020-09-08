@@ -70,10 +70,11 @@ const getKutumOrNouver = async (
   kutumLvl,
   kutumCaphra,
   nouverLvl,
-  nouverCaphra,
-  region
+  nouverCaphra
 ) => {
-  const results = `${baseUrl}/api/kutum-or-nouver?baseAp=${baseAp}&kutumLvl=${kutumLvl}&kutumCaphra=${kutumCaphra}&nouverLvl=${nouverLvl}&nouverCaphra=${nouverCaphra}&region=${region}`;
+  const results = await axios.get(
+    `${baseUrl}/api/kutum-or-nouver?baseAp=${baseAp}&kutumLvl=${kutumLvl}&kutumCaphra=${kutumCaphra}&nouverLvl=${nouverLvl}&nouverCaphra=${nouverCaphra}`
+  );
 
   return results.data;
 };

@@ -73,8 +73,8 @@ const NewHeader = () => {
             </a>
           }
         >
-          <Link to='/ap-brackets' className='grey darken-3 linkHover'>
-            Ap Brackets
+          <Link to='/kutum-or-nouver' className='grey darken-3 linkHover'>
+            Kutum or Nouver
           </Link>
           <Link to='/misc-links' className='grey darken-3 linkHover'>
             Misc. Links

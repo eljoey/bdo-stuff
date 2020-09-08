@@ -4,8 +4,7 @@ import Home from './Home';
 import Marketplace from './marketplace/Marketplace';
 import CaphrasCalc from './caphras-calc/CaphrasCalc';
 import UpgradeCalc from './upgrade-calc/UpgradeCalc';
-
-// TODO: Implement Region Selection.
+import KutumOrNouver from './kutumOrNouver/KutumOrNouver';
 
 function SiteMenu() {
   return (
@@ -21,6 +20,9 @@ function SiteMenu() {
       </Route>
       <Route path='/upgrade-calculator'>
         <UpgradeCalc />
+      </Route>
+      <Route path='/kutum-or-nouver'>
+        <KutumOrNouver />
       </Route>
     </Switch>
   );
