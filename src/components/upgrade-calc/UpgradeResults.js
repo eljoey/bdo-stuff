@@ -8,8 +8,8 @@ import './UpgradeResults.css';
 const UpgradeResults = () => {
   const storageData = JSON.parse(localStorage.getItem('formData'));
   const [loading, setLoading] = useState(true);
-  const [formData, setFormData] = useState(storageData.data);
-  const [region, setRegion] = useState(storageData.region);
+  const [formData] = useState(storageData.data);
+  const [region] = useState(storageData.region);
   const [upgradeData, setUpgradeData] = useState(null);
   const tabOptions = {
     duration: 300,

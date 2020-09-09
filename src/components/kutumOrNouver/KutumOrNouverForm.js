@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Select, Button, Icon, Range } from 'react-materialize';
+import { Select, Button, Icon } from 'react-materialize';
 import { useHistory } from 'react-router-dom';
 import './KutumOrNouverForm.css';
 import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';

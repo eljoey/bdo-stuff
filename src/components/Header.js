@@ -76,9 +76,12 @@ const NewHeader = () => {
           <Link to='/kutum-or-nouver' className='grey darken-3 linkHover'>
             Kutum or Nouver
           </Link>
-          <Link to='/misc-links' className='grey darken-3 linkHover'>
-            Misc. Links
-          </Link>
+          <a
+            href='https://github.com/eljoey/BDO-Api-Helper'
+            className='grey darken-3 linkHover'
+          >
+            Marketplace Api
+          </a>
         </Dropdown>
       </Navbar>
     </div>
