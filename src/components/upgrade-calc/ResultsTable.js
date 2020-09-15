@@ -17,7 +17,7 @@ const ResultsTable = ({ data, sortBy }) => {
           <th data-field='enhLevel'>Enhance Level</th>
           <th data-field='price'>Price</th>
           <th data-field='statChange'>Stat Change</th>
-          <th data-field='cost'>Stat per Billion</th>
+          <th data-field='cost'>Billion per Stat</th>
         </tr>
       </thead>
       <tbody>
