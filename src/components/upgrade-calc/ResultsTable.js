@@ -3,6 +3,7 @@ import { Table } from 'react-materialize';
 import helpers from '../utils/helpers';
 import numeral from 'numeral';
 
+//comment because whatever.
 const ResultsTable = ({ data, sortBy }) => {
   const sortedData = data
     .filter((item) => item.perStatCost[sortBy] > 0)
