@@ -28,8 +28,6 @@ const CaphrasResult = () => {
     getResults();
   }, [curLevel, desiredLevel, enhLevel, item, region]);
 
-  console.log(results);
-
   if (loading) {
     return <Loading />;
   } else {
@@ -56,7 +54,7 @@ const CaphrasResult = () => {
         </div>
         <div>
           <h5>Caphras Used: </h5>
-          <p style={{ fontSize: '20px' }}>
+          <p style={{ fontSize: '18px' }}>
             {results.caphrasNeeded
               .toString()
               .replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,')}
@@ -64,7 +62,7 @@ const CaphrasResult = () => {
         </div>
         <div>
           <h5>Caphras Price:</h5>
-          <p style={{ fontSize: '20px' }}>
+          <p style={{ fontSize: '18px' }}>
             $
             {results.caphrasPrice
               .toString()
@@ -73,11 +71,19 @@ const CaphrasResult = () => {
         </div>
         <div>
           <h5>Caphras Available:</h5>
-          <p style={{ fontSize: '20px' }}>
+          <p style={{ fontSize: '18px' }}>
             {results.caphrasAvailable
               .toString()
               .replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,')}
           </p>
+        </div>
+        <div>
+          <h5>Stats (increase):</h5>
+          {Object.entries(results.stats).map(([key, value]) => (
+            <p
+              style={{ fontSize: '18px', margin: '1px' }}
+            >{`${key}: ${value}`}</p>
+          ))}
         </div>
       </div>
     );
