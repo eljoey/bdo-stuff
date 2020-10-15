@@ -1,36 +1,40 @@
 import React, { useState } from 'react';
-// import { Navbar, Icon, Dropdown } from 'react-materialize';
-// import { useLocation, Link } from 'react-router-dom';
 import clsx from 'clsx';
-import {
-  AppBar,
-  CssBaseline,
-  Divider,
-  Drawer,
-  IconButton,
-  List,
-  ListSubheader,
-  makeStyles,
-  Toolbar,
-  Typography,
-} from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import MenuIcon from '@material-ui/icons/Menu';
+import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 import ListItemLink from './hooks/ListItemLink';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import { makeStyles } from '@material-ui/core/styles';
+import MenuIcon from '@material-ui/icons/Menu';
 import Storefront from '@material-ui/icons/Storefront';
-import { AddShoppingCart, Home, Opacity } from '@material-ui/icons';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { AddShoppingCart, GitHub, Home, Opacity } from '@material-ui/icons';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    display: 'flex',
   },
   content: {
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
-    backgroundColor: 'green',
+    backgroundColor: '#121212',
+  },
+  appBar: {
+    backgroundColor: '#424242',
+    zIndex: theme.zIndex.drawer + 1,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -38,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   menuClose: {
     display: 'none',
   },
-  listIcon: {
+  whiteColor: {
     color: 'white',
   },
   drawerPaper: {
@@ -60,35 +64,39 @@ const useStyles = makeStyles((theme) => ({
     }),
     width: theme.spacing(8),
   },
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
+  drawerSpacing: {
     ...theme.mixins.toolbar,
   },
   title: {
-    flexGrow: 1,
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
-  divierSubheader: {
-    color: 'dark grey',
+  linkSelected: {
+    color: '#3FA3C4',
   },
 }));
 
 const NewHeader = () => {
-  // Gets the name of main page (ex. gets 'marketplace' from location '/marketplace/list/1-1')
-  // const location = useLocation().pathname.split('/')[1];
+  const history = useHistory();
+  const location = useLocation().pathname.split('/')[1];
   const classes = useStyles();
   const [open, setOpen] = useState(true);
+  const [selected, setSelected] = useState(location);
 
   const handleDrawerClick = () => {
     setOpen(!open);
   };
 
+  const handleTitleClick = () => {
+    history.push('/');
+    setSelected('');
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position='static' style={{ backgroundColor: '#303030' }}>
+      <AppBar position='absolute' className={classes.appBar}>
         <Toolbar>
           <IconButton
             edge='start'
@@ -114,6 +122,7 @@ const NewHeader = () => {
             color='inherit'
             noWrap
             className={classes.title}
+            onClick={handleTitleClick}
           >
             BDO-Stuff
           </Typography>
@@ -126,35 +135,81 @@ const NewHeader = () => {
         }}
         open={open}
       >
+        <div className={classes.drawerSpacing} />
         <List>
           <ListItemLink
             to=''
-            icon={<Home className={classes.listIcon} />}
+            icon={
+              <Home
+                className={clsx(
+                  classes.whiteColor,
+                  selected === '' && classes.linkSelected
+                )}
+              />
+            }
             primary='Home'
+            isSelected={selected === ''}
+            setSelected={setSelected}
           />
           <ListItemLink
             to='marketplace'
-            icon={<Storefront className={classes.listIcon} />}
+            icon={
+              <Storefront
+                className={clsx(
+                  classes.whiteColor,
+                  selected === 'marketplace' && classes.linkSelected
+                )}
+              />
+            }
             primary='Marketplace'
+            isSelected={selected === 'marketplace'}
+            setSelected={setSelected}
           />
           <ListItemLink
             to='caphras-calculator'
-            icon={<Opacity className={classes.listIcon} />}
+            icon={
+              <Opacity
+                className={clsx(
+                  classes.whiteColor,
+                  selected === 'caphras-calculator' && classes.linkSelected
+                )}
+              />
+            }
             primary='Caphras Calculator'
+            isSelected={selected === 'caphras-calculator'}
+            setSelected={setSelected}
           />
           <ListItemLink
             to='upgrade-calculator'
-            icon={<AddShoppingCart className={classes.listIcon} />}
+            icon={
+              <AddShoppingCart
+                className={clsx(
+                  classes.whiteColor,
+                  selected === 'upgrade-calculator' && classes.linkSelected
+                )}
+              />
+            }
             primary='Upgrade Calculator'
+            isSelected={selected === 'upgrade-calculator'}
+            setSelected={setSelected}
           />
+        </List>
+        <List>
           <Divider />
-          <ListSubheader className={classes.divierSubheader} inset>
+          <ListSubheader className={classes.whiteColor} inset>
             Misc.
           </ListSubheader>
-          <ListItemLink
-            to='https://github.com/eljoey/BDO-Api-Helper'
-            primary='API'
-          />
+          <ListItem
+            button
+            component='a'
+            target='_blank'
+            href='https://github.com/eljoey/BDO-Api-Helper'
+          >
+            <ListItemIcon>
+              <GitHub className={classes.whiteColor} />
+            </ListItemIcon>
+            <ListItemText>Api</ListItemText>
+          </ListItem>
         </List>
       </Drawer>
       <main className={classes.content}></main>
@@ -163,84 +218,3 @@ const NewHeader = () => {
 };
 
 export default NewHeader;
-
-{
-  /* <div>
-      <Navbar
-        alignLinks='right'
-        brand={
-          <Link to='/' className='brand-logo'>
-            BDO-Stuff
-          </Link>
-        }
-        centerChildren
-        id='mobile-nav'
-        menuIcon={<Icon>menu</Icon>}
-        options={{
-          draggable: false,
-          edge: 'left',
-          inDuration: 250,
-          onCloseEnd: null,
-          onCloseStart: null,
-          onOpenEnd: null,
-          onOpenStart: null,
-          outDuration: 200,
-          preventScrolling: true,
-        }}
-        className='black'
-      >
-        <Link
-          to='/marketplace'
-          className={location === 'marketplace' ? 'grey darken-3' : ''}
-        >
-          Marketplace
-        </Link>
-
-        <Link
-          to='/caphras-calculator'
-          className={location === 'caphras-calculator' ? 'grey darken-3' : ''}
-        >
-          Caphras Calculator
-        </Link>
-        <Link
-          to='/upgrade-calculator'
-          className={location === 'upgrade-calculator' ? 'grey darken-3' : ''}
-        >
-          Upgrade Calculator
-        </Link>
-        <Dropdown
-          id='Dropdown_6'
-          options={{
-            alignment: 'left',
-            autoTrigger: true,
-            closeOnClick: true,
-            constrainWidth: true,
-            container: null,
-            coverTrigger: true,
-            hover: false,
-            inDuration: 150,
-            onCloseEnd: null,
-            onCloseStart: null,
-            onOpenEnd: null,
-            onOpenStart: null,
-            outDuration: 250,
-          }}
-          trigger={
-            <a href='#!'>
-              Misc. Tools <Icon right>arrow_drop_down</Icon>
-            </a>
-          }
-        >
-          <Link to='/kutum-or-nouver' className='grey darken-3 linkHover'>
-            Kutum or Nouver
-          </Link>
-          <a
-            href='https://github.com/eljoey/BDO-Api-Helper'
-            className='grey darken-3 linkHover'
-          >
-            Marketplace Api
-          </a>
-        </Dropdown>
-      </Navbar>
-    </div> */
-}

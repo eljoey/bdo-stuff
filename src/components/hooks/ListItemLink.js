@@ -1,18 +1,21 @@
-import React, { forwardRef, useMemo } from 'react';
+import React, { forwardRef, useMemo, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import { ListItemText, makeStyles } from '@material-ui/core';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    color: theme.palette.background.paper,
+  },
+  linkSelected: {
+    color: '#3FA3C4',
   },
 }));
 
-const ListItemLink = ({ icon, primary, to }) => {
+const ListItemLink = ({ icon, primary, to, isSelected, setSelected }) => {
   const classes = useStyles();
 
   const renderLink = useMemo(
@@ -23,10 +26,24 @@ const ListItemLink = ({ icon, primary, to }) => {
     [to]
   );
 
+  const handleLinkSelection = () => {
+    setSelected(to);
+  };
+
   return (
     <div className={classes.root}>
-      <ListItem button component={renderLink}>
-        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+      <ListItem
+        button
+        component={renderLink}
+        className={clsx(isSelected && classes.linkSelected)}
+        onClick={handleLinkSelection}
+        selected={isSelected}
+      >
+        {icon ? (
+          <ListItemIcon className={clsx(isSelected && classes.linkSelected)}>
+            {icon}
+          </ListItemIcon>
+        ) : null}
         <ListItemText primary={primary} />
       </ListItem>
     </div>

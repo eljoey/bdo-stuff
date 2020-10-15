@@ -5,23 +5,7 @@ import './Home.css';
 // TODO: Grab the background image instead of website link
 
 const Home = () => {
-  return (
-    <div className='bg '>
-      <div className='gradient valign-wrapper'>
-        <div className='container '>
-          <Row s={12}>
-            <Col s={12} className='center-align valign-center '>
-              <h3 className=''>BDO-Stuff </h3>
-              <div className='divider black' />
-              <h4 className='subtext-header mt-2 mb-4 '>
-                Your place for bdo stuff.
-              </h4>
-            </Col>
-          </Row>
-        </div>
-      </div>
-    </div>
-  );
+  return <></>;
 };
 
 export default Home;
