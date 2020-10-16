@@ -293,7 +293,7 @@ const mpTabs = [
     ],
   },
   {
-    title: 'Enhancement/Upgrade',
+    title: 'Enhancement / Upgrade',
     tab: 30,
     subTabs: [
       {

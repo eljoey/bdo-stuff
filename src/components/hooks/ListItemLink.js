@@ -1,4 +1,4 @@
-import React, { forwardRef, useMemo, useState } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ListItem from '@material-ui/core/ListItem';
@@ -34,6 +34,7 @@ const ListItemLink = ({ icon, primary, to, isSelected, setSelected }) => {
     <div className={classes.root}>
       <ListItem
         button
+        disableRipple
         component={renderLink}
         className={clsx(isSelected && classes.linkSelected)}
         onClick={handleLinkSelection}

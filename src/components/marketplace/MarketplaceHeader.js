@@ -1,9 +1,69 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Navbar, NavItem, TextInput, Icon, Switch } from 'react-materialize';
+import { Navbar, NavItem, TextInput, Icon } from 'react-materialize';
 import apiService from '../services/api';
+import {
+  AppBar,
+  fade,
+  FormGroup,
+  Grid,
+  InputBase,
+  makeStyles,
+  Paper,
+  Toolbar,
+  Typography,
+  withStyles,
+  Switch,
+} from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
+import SearchBar from 'material-ui-search-bar';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexGrow: 1,
+    margin: '0 20px',
+    padding: '10px',
+    backgroundColor: '#404040',
+    height: '60px',
+    border: '1px solid white',
+  },
+  rightContent: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '75%',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  searchBar: {
+    width: '70%',
+    backgroundColor: 'grey',
+  },
+  regionSwitch: {
+    margin: '0 15px',
+    alignItems: 'center',
+    spacing: 1,
+  },
+}));
+
+const RegionSwitch = withStyles({
+  switchBase: {
+    color: 'white',
+    '&$checked': {
+      color: 'white',
+    },
+    '&$checked + $track': {
+      backgroundColor: '#ffac33',
+    },
+  },
+  checked: {},
+  track: {},
+})(Switch);
 
 const MarketplaceHeader = () => {
+  const classes = useStyles();
   const history = useHistory();
   const [searchValue, setSearchValue] = useState('');
   const [region, setRegion] = useState(
@@ -15,12 +75,12 @@ const MarketplaceHeader = () => {
     apiService.setRegionLocation(region);
   }, [region]);
 
-  const handleChange = (e) => {
-    setSearchValue(e.target.value);
+  const handleChange = (input) => {
+    setSearchValue(input);
   };
+  console.log(searchValue);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     setSearchValue('');
 
     const regex = / /gi;
@@ -35,7 +95,38 @@ const MarketplaceHeader = () => {
   };
 
   return (
-    <Navbar
+    <Paper square className={classes.root}>
+      <div>TITLE OF SHIT</div>
+
+      <div className={classes.rightContent}>
+        <SearchBar
+          value={searchValue}
+          onChange={(text) => handleChange(text)}
+          onRequestSearch={handleSubmit}
+          className={classes.searchBar}
+        />
+        <Typography component='div'>
+          <Grid component='label' container className={classes.regionSwitch}>
+            <Grid item>NA</Grid>
+            <Grid item>
+              <RegionSwitch
+                checked={region === 'na' ? false : true}
+                onChange={handleRegionChange}
+                name={region}
+              />
+            </Grid>
+            <Grid item>EU</Grid>
+          </Grid>
+        </Typography>
+      </div>
+    </Paper>
+  );
+};
+
+export default MarketplaceHeader;
+
+{
+  /* <Navbar
       alignLinks='right'
       id='nav-wrapper'
       brand={
@@ -76,8 +167,5 @@ const MarketplaceHeader = () => {
           checked={region === 'na' ? false : true}
         />
       </NavItem>
-    </Navbar>
-  );
-};
-
-export default MarketplaceHeader;
+    </Navbar> */
+}
