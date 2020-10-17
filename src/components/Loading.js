@@ -1,13 +1,20 @@
+import { LinearProgress, makeStyles } from '@material-ui/core';
 import React from 'react';
-import { Row, Col, ProgressBar } from 'react-materialize';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    padding: '5px',
+  },
+}));
 
 const Loading = () => {
+  const classes = useStyles();
+
   return (
-    <Row>
-      <Col s={12}>
-        <ProgressBar />
-      </Col>
-    </Row>
+    <div className={classes.root}>
+      <LinearProgress />
+    </div>
   );
 };
 

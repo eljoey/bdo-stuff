@@ -42,7 +42,7 @@ const Navbar = ({ setSelected, open, setOpen }) => {
 
   return (
     <>
-      <AppBar position='absolute' className={classes.appBar}>
+      <AppBar position='fixed' className={classes.appBar}>
         <Toolbar>
           <IconButton
             edge='start'

@@ -1,11 +1,59 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useRouteMatch } from 'react-router-dom';
 import apiService from '../services/api';
-import { Collection, CollectionItem, Badge } from 'react-materialize';
 import helpers from '../utils/helpers';
 import Loading from '../Loading';
+import { makeStyles } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles((theme) => ({
+  table: {
+    flexGrow: 1,
+    borderRadius: 0,
+    height: '100%',
+    backgroundColor: '#404040',
+    borderRight: '1px solid white',
+  },
+  marketItem: {
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#505050',
+    },
+  },
+  itemLink: {
+    textDecoration: 'none',
+    fontSize: '1rem',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'left',
+    },
+  },
+  sumCount: {
+    color: '#ffc107',
+    padding: '12px',
+    [theme.breakpoints.down('xs')]: {
+      padding: '20px',
+    },
+  },
+  tableCell: {
+    padding: '12px',
+  },
+  searchHeader: {
+    backgroundColor: 'white',
+    padding: '12px',
+  },
+}));
 
 const ItemInfo = ({ setItemName }) => {
+  const classes = useStyles();
   const { itemId } = useParams();
   const { url } = useRouteMatch();
   const [itemInfo, setItemInfo] = useState(null);
@@ -78,28 +126,49 @@ const ItemInfo = ({ setItemName }) => {
     };
 
     return (
-      <Collection>
-        <CollectionItem style={{ padding: '15px' }}>
-          {itemInfo[0].name} <Badge>In Stock</Badge>
-        </CollectionItem>
-        {itemInfo.map((item) => (
-          <CollectionItem
-            style={{ padding: '15px', backgroundColor: '#616161' }}
-          >
-            <Link
-              to={`${url}/${item.subKey}`}
-              className={helpers.getTextColor(item.grade)}
-            >
-              {`${enhanceLevelTitle[item.subKey]}${item.name}`}
-              {'  '}
-              <span className='grey-text'>{`$${item.pricePerOne
-                .toString()
-                .replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,')}`}</span>
-            </Link>
-            <Badge className='amber-text'>{item.count}</Badge>
-          </CollectionItem>
-        ))}
-      </Collection>
+      <TableContainer component={Paper} className={classes.table}>
+        <Table aria-label='prices'>
+          <TableHead>
+            <TableRow className={classes.searchHeader}>
+              <TableCell className={classes.tableCell}>
+                {itemInfo[0].name}
+              </TableCell>
+              <TableCell align='right' className={classes.tableCell}>
+                Available
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {itemInfo.map((item) => (
+              <TableRow className={classes.marketItem}>
+                <TableCell className={classes.tableCell}>
+                  <Typography
+                    component={Link}
+                    to={`${url}/${item.subKey}`}
+                    className={classes.itemLink}
+                    style={{ color: helpers.getTextColor(item.grade) }}
+                  >
+                    {`${enhanceLevelTitle[item.subKey]}${item.name}`}
+                    {'  '}
+                    <Typography
+                      variant='span'
+                      style={{ color: 'white' }}
+                    >{`$${item.pricePerOne
+                      .toString()
+                      .replace(
+                        /(\d)(?=(\d{3})+(?:\.\d+)?$)/g,
+                        '$1,'
+                      )}`}</Typography>
+                  </Typography>
+                </TableCell>
+                <TableCell align='right' className={classes.sumCount}>
+                  <Typography component='p'>{item.count}</Typography>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     );
   } else {
     return <Loading />;

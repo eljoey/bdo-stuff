@@ -21,6 +21,12 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    [theme.breakpoints.down('xs')]: {
+      position: 'fixed',
+      marginTop: '55px',
+      width: '100%',
+      height: '100vh',
+    },
   },
   drawerPaperClose: {
     transition: theme.transitions.create('width', {

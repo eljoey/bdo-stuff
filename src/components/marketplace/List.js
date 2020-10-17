@@ -1,23 +1,16 @@
 import React, { useState } from 'react';
-import { Collapsible, CollapsibleItem } from 'react-materialize';
 import ListItems from './ListItems';
 import mpTabs from '../assets/mpTabs';
-import { makeStyles, Typography, withStyles } from '@material-ui/core';
+import { makeStyles, withStyles } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-// import classes from '*.module.css';
 
 const ExpansionPanel = withStyles({
   root: {
-    border: '1px solid rgba(0, 0, 0, .125)',
+    borderBottom: '1px solid rgba(255,255,255, 0.9)',
     boxShadow: 'none',
-    '&:is(:first-child)': {
-      borderTop: 0,
-    },
-    '&:not(:last-child)': {
-      borderBottom: 0,
-    },
     '&:before': {
       display: 'none',
     },
@@ -32,7 +25,7 @@ const ExpansionPanelSummary = withStyles({
   root: {
     backgroundColor: '#505050',
     color: 'white',
-    borderBottom: '1px solid rgba(0, 0, 0, .125)',
+    borderBottom: '1px solid rgba(255,255,255, 0.9)',
     marginBottom: -1,
     minHeight: 46,
     '&$expanded': {
@@ -50,13 +43,28 @@ const ExpansionPanelSummary = withStyles({
 const ExpansionPanelDetails = withStyles((theme) => ({
   root: {
     padding: theme.spacing(4),
-    backgroundColor: '#606060',
+    backgroundColor: '#757575',
+    width: '100%',
   },
 }))(MuiExpansionPanelDetails);
 
 const useStyles = makeStyles((theme) => ({
   listContainer: {
-    margin: '0 20px',
+    marginLeft: '20px',
+    height: '100%',
+    backgroundColor: '#404040',
+    borderColor: 'white',
+    borderStyle: 'solid',
+    borderWidth: '0 1px 1px 1px',
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: '5px',
+    },
+  },
+  listDetails: {
+    width: '100%',
+    [theme.breakpoints.down('xs')]: {
+      padding: '5px',
+    },
   },
 }));
 
@@ -82,7 +90,7 @@ const List = ({ url }) => {
           >
             <Typography>{tab.title}</Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
+          <ExpansionPanelDetails className={classes.listDetails}>
             <Typography>
               <ListItems subTabs={tab.subTabs} tabId={tab.tab} url={url} />
             </Typography>
@@ -94,13 +102,3 @@ const List = ({ url }) => {
 };
 
 export default List;
-
-{
-  /* <Collapsible accordion style={{ backgroundColor: 'grey' }}>
-{mpTabs.map((tab) => (
-  <CollapsibleItem header={tab.title}>
-    <ListItems subTabs={tab.subTabs} tabId={tab.tab} url={url} />
-  </CollapsibleItem>
-))}
-</Collapsible> */
-}

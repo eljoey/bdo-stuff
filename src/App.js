@@ -19,13 +19,16 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '60px',
     backgroundColor: '#121212',
     flexWrap: 'nowrap',
+    [theme.breakpoints.down('xs')]: {
+      marginTop: '55px',
+    },
   },
 }));
 
 function App() {
   const classes = useStyles();
   const location = useLocation().pathname.split('/')[1];
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(location);
 
   return (

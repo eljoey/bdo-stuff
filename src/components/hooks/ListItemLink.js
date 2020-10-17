@@ -21,7 +21,7 @@ const ListItemLink = ({ icon, primary, to, isSelected, setSelected }) => {
   const renderLink = useMemo(
     () =>
       forwardRef((itemProps, ref) => (
-        <RouterLink to={to} ref={ref} {...itemProps} />
+        <RouterLink to={`/${to}`} ref={ref} {...itemProps} />
       )),
     [to]
   );

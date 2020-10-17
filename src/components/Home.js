@@ -1,19 +1,20 @@
 import React from 'react';
-import { Row, Col } from 'react-materialize';
 import { makeStyles } from '@material-ui/core';
 
 // TODO: Grab the background image instead of website link
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+  },
+}));
 
 const Home = () => {
   const classes = useStyles();
 
-  return (
-    <>
-      <h5>Hi</h5>
-    </>
-  );
+  return <div className={classes.root}>Hi</div>;
 };
 
 export default Home;

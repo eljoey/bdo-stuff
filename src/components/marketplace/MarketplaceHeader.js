@@ -1,22 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Navbar, NavItem, TextInput, Icon } from 'react-materialize';
 import apiService from '../services/api';
-import {
-  AppBar,
-  fade,
-  FormGroup,
-  Grid,
-  InputBase,
-  makeStyles,
-  Paper,
-  Toolbar,
-  Typography,
-  withStyles,
-  Switch,
-} from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import { makeStyles, withStyles } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import Switch from '@material-ui/core/Switch';
 import SearchBar from 'material-ui-search-bar';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,11 +20,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#404040',
     height: '60px',
     border: '1px solid white',
+
+    [theme.breakpoints.down('xs')]: {
+      margin: '0 5px',
+    },
   },
   rightContent: {
     display: 'flex',
     flexDirection: 'row',
-    width: '75%',
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
@@ -45,6 +39,15 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 15px',
     alignItems: 'center',
     spacing: 1,
+  },
+  backBtn: {
+    color: 'white',
+    '&:hover': {
+      cursor: 'pointer',
+    },
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
   },
 }));
 
@@ -78,7 +81,6 @@ const MarketplaceHeader = () => {
   const handleChange = (input) => {
     setSearchValue(input);
   };
-  console.log(searchValue);
 
   const handleSubmit = () => {
     setSearchValue('');
@@ -94,9 +96,15 @@ const MarketplaceHeader = () => {
     history.go(0);
   };
 
+  const handleBackButton = () => {
+    if (history.location.pathname === '/marketplace') return;
+
+    history.goBack();
+  };
+
   return (
     <Paper square className={classes.root}>
-      <div>TITLE OF SHIT</div>
+      <ArrowBackIcon onClick={handleBackButton} className={classes.backBtn} />
 
       <div className={classes.rightContent}>
         <SearchBar
@@ -124,48 +132,3 @@ const MarketplaceHeader = () => {
 };
 
 export default MarketplaceHeader;
-
-{
-  /* <Navbar
-      alignLinks='right'
-      id='nav-wrapper'
-      brand={
-        <i
-          onClick={() => history.goBack()}
-          className='material-icons brand-logo'
-          style={{ cursor: 'pointer', paddingLeft: '5px' }}
-        >
-          keyboard_arrow_left
-        </i>
-      }
-      style={{
-        backgroundColor: '#616161',
-        border: 'white .5px solid',
-        marginTop: '8px',
-      }}
-      className=' hide-on-med-and-down'
-    >
-      <Icon>search</Icon>
-      <NavItem>
-        <form onSubmit={handleSubmit}>
-          <TextInput
-            placeholder='Search'
-            value={searchValue}
-            style={{
-              color: 'white',
-              padding: '1px',
-            }}
-            onChange={handleChange}
-          ></TextInput>
-        </form>
-      </NavItem>
-      <NavItem>
-        <Switch
-          offLabel='NA'
-          onChange={handleRegionChange}
-          onLabel='EU'
-          checked={region === 'na' ? false : true}
-        />
-      </NavItem>
-    </Navbar> */
-}
