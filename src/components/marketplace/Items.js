@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
   },
   marketItem: {
     color: 'white',
-
     '&:hover': {
       backgroundColor: '#505050',
     },
@@ -71,6 +70,7 @@ const Items = () => {
     fetchItemList();
   }, [main, sub]);
 
+
   if (!loading) {
     return (
       <TableContainer component={Paper} className={classes.table}>
@@ -87,7 +87,7 @@ const Items = () => {
           </TableHead>
           <TableBody>
             {itemList.map((item) => (
-              <TableRow className={classes.marketItem}>
+              <TableRow className={classes.marketItem} key={item.mainKey}>
                 <TableCell className={classes.tableCell}>
                   <Link
                     to={`${url}/${item.mainKey}`}

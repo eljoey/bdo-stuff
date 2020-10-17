@@ -3,11 +3,11 @@ import ListItems from './ListItems';
 import mpTabs from '../assets/mpTabs';
 import { makeStyles, withStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
-import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import MuiAccordion from '@material-ui/core/Accordion';
+import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
+import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 
-const ExpansionPanel = withStyles({
+const Accordion = withStyles({
   root: {
     borderBottom: '1px solid rgba(255,255,255, 0.9)',
     boxShadow: 'none',
@@ -19,9 +19,9 @@ const ExpansionPanel = withStyles({
     },
   },
   expanded: {},
-})(MuiExpansionPanel);
+})(MuiAccordion);
 
-const ExpansionPanelSummary = withStyles({
+const AccordionSummary = withStyles({
   root: {
     backgroundColor: '#505050',
     color: 'white',
@@ -38,15 +38,15 @@ const ExpansionPanelSummary = withStyles({
     },
   },
   expanded: {},
-})(MuiExpansionPanelSummary);
+})(MuiAccordionSummary);
 
-const ExpansionPanelDetails = withStyles((theme) => ({
+const AccordionDetails = withStyles((theme) => ({
   root: {
     padding: theme.spacing(4),
     backgroundColor: '#757575',
     width: '100%',
   },
-}))(MuiExpansionPanelDetails);
+}))(MuiAccordionDetails);
 
 const useStyles = makeStyles((theme) => ({
   listContainer: {
@@ -79,23 +79,24 @@ const List = ({ url }) => {
   return (
     <div className={classes.listContainer}>
       {mpTabs.map((tab) => (
-        <ExpansionPanel
-          square
+        <Accordion
+        key={tab.tab}
+        square
           expanded={expanded === tab.title}
           onChange={handleChange(tab.title)}
         >
-          <ExpansionPanelSummary
+          <AccordionSummary
             aria-controls={`${tab.title}-content`}
             id={`${tab.title}-header`}
           >
             <Typography>{tab.title}</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={classes.listDetails}>
-            <Typography>
+          </AccordionSummary>
+          <AccordionDetails className={classes.listDetails}>
+            <Typography component='div'>
               <ListItems subTabs={tab.subTabs} tabId={tab.tab} url={url} />
             </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+          </AccordionDetails>
+        </Accordion>
       ))}
     </div>
   );

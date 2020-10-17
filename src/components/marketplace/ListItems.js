@@ -39,10 +39,10 @@ const ListItems = ({ subTabs, tabId, url }) => {
       {subTabs.map((tab) => {
         // BDO Skips 18 on Awakening Weapons for some god awful reasoning.
         if (tabId === 10 && tab.option === 18) {
-          return <></>;
+          return null
         } else {
           return (
-            <div className={classes.root}>
+            <div className={classes.root} key={`${tabId}-${tab.option}`}>
               <Link
                 to={`${url}/list/${tabId}-${tab.option}`}
                 className={clsx(

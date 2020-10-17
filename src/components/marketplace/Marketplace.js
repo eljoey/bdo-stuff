@@ -54,7 +54,7 @@ const Marketplace = () => {
         <Grid item className={classes.list}>
           <List url={url}></List>
         </Grid>
-        <Grid item className={classes.infoPanel} nowrap>
+        <Grid item className={classes.infoPanel}>
           <Switch>
             <Route path={`${path}/list/:main-:sub/:itemId/:enhanceLevel`}>
               <ItemPricing itemName={itemName} />
