@@ -96,7 +96,7 @@ const ItemPricing = () => {
           </TableHead>
           <TableBody>
             {itemPricing.map((item) => (
-              <TableRow className={classes.marketItem}>
+              <TableRow className={classes.marketItem} key={item.pricePerOne}>
                 <TableCell className={classes.price}>
                   {`$${item.pricePerOne
                     .toString()

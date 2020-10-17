@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     color: 'white',
+    height: '100%',
     marginTop: '60px',
     backgroundColor: '#121212',
     flexWrap: 'nowrap',

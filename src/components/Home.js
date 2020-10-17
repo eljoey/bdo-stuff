@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     display: 'flex',
+    height: 'auto',
     flexDirection: 'column',
   },
 }));

@@ -5,6 +5,7 @@ import ListItemLink from '../hooks/ListItemLink';
 import { makeStyles } from '@material-ui/core/styles';
 import Storefront from '@material-ui/icons/Storefront';
 import AddShoppingCart from '@material-ui/icons/AddShoppingCart';
+import CompareArrowsIcon from '@material-ui/icons/CompareArrows';
 import Home from '@material-ui/icons/Home';
 import Opacity from '@material-ui/icons/Opacity';
 
@@ -77,6 +78,20 @@ const MainList = ({ selected, setSelected }) => {
         primary='Upgrade Calculator'
         isSelected={selected === 'upgrade-calculator'}
         setSelected={setSelected}
+      />
+      <ListItemLink 
+        to='kutum-or-nouver'
+        icon={
+          <CompareArrowsIcon
+            className={clsx(
+              classes.whiteColor,
+              selected === 'kutum-or-nouver' && classes.linkSelected
+            )} 
+          />
+        }
+        primary='kutum-or-nouver'
+        isSelected={selected === 'kutum-or-nouver'}
+        setSelected={setSelected} 
       />
     </List>
   );
