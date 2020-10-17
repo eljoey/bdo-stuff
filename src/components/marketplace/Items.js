@@ -24,12 +24,13 @@ const useStyles = makeStyles((theme) => ({
   },
   marketItem: {
     color: 'white',
+
+    '&:hover': {
+      backgroundColor: '#505050',
+    },
   },
   itemLink: {
     textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
     fontSize: '1rem',
   },
   sumCount: {
