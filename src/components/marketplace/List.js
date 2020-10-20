@@ -80,8 +80,8 @@ const List = ({ url }) => {
     <div className={classes.listContainer}>
       {mpTabs.map((tab) => (
         <Accordion
-        key={tab.tab}
-        square
+          key={tab.tab}
+          square
           expanded={expanded === tab.title}
           onChange={handleChange(tab.title)}
         >

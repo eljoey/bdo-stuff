@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MainList = ({ selected, setSelected }) => {
+const MainList = ({ setOpen, selected, setSelected }) => {
   const classes = useStyles();
 
   return (
@@ -36,6 +36,7 @@ const MainList = ({ selected, setSelected }) => {
         primary='Home'
         isSelected={selected === ''}
         setSelected={setSelected}
+        setOpen={setOpen}
       />
       <ListItemLink
         to='marketplace'
@@ -50,6 +51,7 @@ const MainList = ({ selected, setSelected }) => {
         primary='Marketplace'
         isSelected={selected === 'marketplace'}
         setSelected={setSelected}
+        setOpen={setOpen}
       />
       <ListItemLink
         to='caphras-calculator'
@@ -64,6 +66,7 @@ const MainList = ({ selected, setSelected }) => {
         primary='Caphras Calculator'
         isSelected={selected === 'caphras-calculator'}
         setSelected={setSelected}
+        setOpen={setOpen}
       />
       <ListItemLink
         to='upgrade-calculator'
@@ -78,20 +81,22 @@ const MainList = ({ selected, setSelected }) => {
         primary='Upgrade Calculator'
         isSelected={selected === 'upgrade-calculator'}
         setSelected={setSelected}
+        setOpen={setOpen}
       />
-      <ListItemLink 
+      <ListItemLink
         to='kutum-or-nouver'
         icon={
           <CompareArrowsIcon
             className={clsx(
               classes.whiteColor,
               selected === 'kutum-or-nouver' && classes.linkSelected
-            )} 
+            )}
           />
         }
         primary='kutum-or-nouver'
         isSelected={selected === 'kutum-or-nouver'}
-        setSelected={setSelected} 
+        setSelected={setSelected}
+        setOpen={setOpen}
       />
     </List>
   );

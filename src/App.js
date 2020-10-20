@@ -16,12 +16,16 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     color: 'white',
-    height: '100%',
-    marginTop: '60px',
+    overflowY: 'scroll',
+    marginTop: theme.spacing(8),
+    marginLeft: theme.spacing(8),
+    padding: '25px',
     backgroundColor: '#121212',
     flexWrap: 'nowrap',
     [theme.breakpoints.down('xs')]: {
-      marginTop: '55px',
+      marginTop: theme.spacing(7),
+      marginLeft: 0,
+      padding: '0'
     },
   },
 }));
@@ -36,8 +40,8 @@ function App() {
     <div className={classes.root}>
       <CssBaseline />
       <Navbar open={open} setOpen={setOpen} setSelected={setSelected} />
+      <Menu open={open} setOpen={setOpen} selected={selected} setSelected={setSelected} />
       <Grid container spacing={0} className={classes.content}>
-        <Menu open={open} selected={selected} setSelected={setSelected} />
         <SiteMenu />
       </Grid>
     </div>

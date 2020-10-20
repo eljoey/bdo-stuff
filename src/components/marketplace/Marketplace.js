@@ -68,7 +68,6 @@ const Marketplace = () => {
             <Route path={`${path}/search/:searchTerm`}>
               <Search />
             </Route>
-            <Route path={path} />
           </Switch>
         </Grid>
       </Grid>

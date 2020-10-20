@@ -10,13 +10,14 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   drawerPaper: {
-    position: 'relative',
+    position: 'fixed',
     overflowX: 'hidden',
     whiteSpace: 'noWrap',
     backgroundColor: '#505050',
     color: 'white',
     width: drawerWidth,
     height: '100%',
+    marginTop: theme.spacing(7),
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Menu = ({ open, selected, setSelected }) => {
+const Menu = ({ open, setOpen, selected, setSelected }) => {
   const classes = useStyles();
 
   return (
@@ -51,7 +52,7 @@ const Menu = ({ open, selected, setSelected }) => {
       }}
       open={open}
     >
-      <MainList selected={selected} setSelected={setSelected} />
+      <MainList selected={selected} setSelected={setSelected} setOpen={setOpen} />
       <Divider />
       <MiscList />
     </Drawer>
