@@ -1,39 +1,79 @@
 import React from 'react';
-import { Table } from 'react-materialize';
 import helpers from '../utils/helpers';
 import numeral from 'numeral';
+import { Table, TableCell, TableContainer, TableHead, TableBody, TableRow, withStyles, Paper, makeStyles } from '@material-ui/core';
+import clsx from 'clsx';
 
-//comment because whatever.
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: '#3FA3C4',
+    color: theme.palette.common.black,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 16
+    }
+  },
+  body: {
+    fontSize: 14,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 16
+    }
+  }
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    backgroundColor: '#808080',
+    '&:nth-of-type(odd)': {
+      backgroundColor: '#606060'
+    }
+  }
+}))(TableRow);
+
+const useStyles = makeStyles((theme) => ({
+  whiteText: {
+    color: 'white'
+  },
+  mobileView: {
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
+    }
+  }
+}));
+
 const ResultsTable = ({ data, sortBy }) => {
+  const classes = useStyles();
   const sortedData = data
     .filter((item) => item.perStatCost[sortBy] > 0)
     .sort((a, b) => a.perStatCost[sortBy] - b.perStatCost[sortBy]);
+  let index = 0;
 
   return (
-    <Table>
-      <thead>
-        <tr>
-          <th data-field='name'>Item Name</th>
-          <th data-field='slot'>Slot</th>
-          <th data-field='enhLevel'>Enhance Level</th>
-          <th data-field='price'>Price</th>
-          <th data-field='statChange'>Stat Change</th>
-          <th data-field='cost'>Billion per Stat</th>
-        </tr>
-      </thead>
-      <tbody>
-        {sortedData.map((item) => (
-          <tr>
-            <td className={helpers.getTextColor(item.grade)}>{item.name}</td>
-            <td>{item.type}</td>
-            <td>{item.enhLevel}</td>
-            <td>{numeral(item.price).format('($ 0.00 a)')}</td>
-            <td>{item.statChange[sortBy]}</td>
-            <td>{numeral(item.perStatCost[sortBy]).format('00.00')}</td>
-          </tr>
-        ))}
-      </tbody>
-    </Table>
+    <TableContainer>
+      <Table stickyHeader size='small'>
+        <TableHead>
+          <StyledTableRow>
+            <StyledTableCell>Item Name</StyledTableCell>
+            <StyledTableCell className={classes.mobileView} align='right'>Slot</StyledTableCell>
+            <StyledTableCell align='right'>Enhance Level</StyledTableCell>
+            <StyledTableCell className={classes.mobileView} align='right'>Price</StyledTableCell>
+            <StyledTableCell className={classes.mobileView} align='right'>Stat Change</StyledTableCell>
+            <StyledTableCell align='right'>Billion per Stat</StyledTableCell>
+          </StyledTableRow>
+        </TableHead>
+        <TableBody>
+          {sortedData.map((item) => (
+            <StyledTableRow key={index++}>
+              <StyledTableCell style={{ color: helpers.getTextColor(item.grade) }}>{item.name}</StyledTableCell>
+              <StyledTableCell className={clsx(classes.whiteText, classes.mobileView)} align='right'>{item.type}</StyledTableCell>
+              <StyledTableCell className={classes.whiteText} align='right'>{item.enhLevel}</StyledTableCell>
+              <StyledTableCell className={clsx(classes.whiteText, classes.mobileView)} align='right'>{numeral(item.price).format('($ 0.00 a)')}</StyledTableCell>
+              <StyledTableCell className={clsx(classes.whiteText, classes.mobileView)} align='right'>{item.statChange[sortBy]}</StyledTableCell>
+              <StyledTableCell className={classes.whiteText} align='right'>{numeral(item.perStatCost[sortBy]).format('00.00')}</StyledTableCell>
+            </StyledTableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

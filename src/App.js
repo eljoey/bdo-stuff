@@ -16,10 +16,9 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     color: 'white',
-    overflowY: 'scroll',
-    marginTop: theme.spacing(8),
-    marginLeft: theme.spacing(8),
-    padding: '25px',
+    minHeight: '100vh',
+    paddingTop: theme.spacing(8),
+    paddingLeft: theme.spacing(8),
     backgroundColor: '#121212',
     flexWrap: 'nowrap',
     [theme.breakpoints.down('xs')]: {

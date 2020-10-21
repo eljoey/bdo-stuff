@@ -2,23 +2,34 @@ import React, { useState, useEffect } from 'react';
 import Loading from '../Loading';
 import ResultsTable from './ResultsTable';
 import api from '../services/api';
-import { Tabs, Tab } from 'react-materialize';
-import './UpgradeResults.css';
+import { makeStyles, Paper, Tab, Tabs } from '@material-ui/core';
+import TabPanel from './TabPanel';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    backgroundColor: '#202020',
+  },
+  tab: {
+    color: 'white'
+  }
+}));
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 const UpgradeResults = () => {
+  const classes = useStyles();
   const storageData = JSON.parse(localStorage.getItem('formData'));
+  const [value, setValue] = useState(0);
   const [loading, setLoading] = useState(true);
   const [formData] = useState(storageData.data);
   const [region] = useState(storageData.region);
   const [upgradeData, setUpgradeData] = useState(null);
-  const tabOptions = {
-    duration: 300,
-    onShow: null,
-    responsiveThreshold: Infinity,
-    swipeable: false,
-  };
-
-  console.log(upgradeData);
 
   useEffect(() => {
     setLoading(true);
@@ -32,35 +43,34 @@ const UpgradeResults = () => {
     getUpgradeData();
   }, [formData, region]);
 
+  const handleChange = (e, newValue) => {
+    setValue(newValue);
+  };
+
   if (!loading) {
     return (
-      <div
-        style={{
-          height: '100%',
-          border: 'solid 1px white',
-          marginTop: '8px',
-          marginBottom: '8px',
-          backgroundColor: '#616161',
-        }}
-      >
+      <Paper className={classes.root}>
         <Tabs
-          className='tab-demo z-depth-1 tabs-fixed-width grey darken-2'
-          style={{
-            fontColor: 'white',
-            backgroundColor: '#616161',
-          }}
+          value={value}
+          indicatorColor='primary'
+          textColor='primary'
+          onChange={handleChange}
+          centered
         >
-          <Tab options={tabOptions} className='white-text' title='Ap'>
-            <ResultsTable data={upgradeData} sortBy={'ap'} />
-          </Tab>
-          <Tab options={tabOptions} className='white-text' title='Dp'>
-            <ResultsTable data={upgradeData} sortBy={'dp'} />
-          </Tab>
-          <Tab options={tabOptions} className='white-text' title='Ap + Dp'>
-            <ResultsTable data={upgradeData} sortBy={'total'} />
-          </Tab>
+          <Tab className={classes.tab} label='Ap' {...a11yProps(0)} />
+          <Tab className={classes.tab} label='Dp' {...a11yProps(1)} />
+          <Tab className={classes.tab} label='Ap + Dp' {...a11yProps(2)} />
         </Tabs>
-      </div>
+        <TabPanel value={value} index={0}>
+          <ResultsTable data={upgradeData} sortBy={'ap'} />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <ResultsTable data={upgradeData} sortBy={'dp'} />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <ResultsTable data={upgradeData} sortBy={'total'} />
+        </TabPanel>
+      </Paper >
     );
   } else {
     return <Loading />;

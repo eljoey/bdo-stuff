@@ -16,11 +16,11 @@ import Send from '@material-ui/icons/Send';
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#404040',
+    height: 'max-content',
     minWidth: '30%',
-    margin: '25px auto 0 auto',
+    margin: 'auto',
     padding: '25px',
     borderRadius: '5px',
-    alignItems: 'center',
   },
   title: {
     textAlign: 'center',
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   form: {
     margin: theme.spacing(2),
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   formControl: {
     margin: theme.spacing(1),
