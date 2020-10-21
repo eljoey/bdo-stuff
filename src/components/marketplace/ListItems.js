@@ -1,6 +1,7 @@
-import { makeStyles, Divider } from '@material-ui/core';
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
 import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
@@ -39,7 +40,7 @@ const ListItems = ({ subTabs, tabId, url }) => {
       {subTabs.map((tab) => {
         // BDO Skips 18 on Awakening Weapons for some god awful reasoning.
         if (tabId === 10 && tab.option === 18) {
-          return null
+          return null;
         } else {
           return (
             <div className={classes.root} key={`${tabId}-${tab.option}`}>

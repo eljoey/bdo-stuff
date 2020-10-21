@@ -6,7 +6,9 @@ import ItemInfo from './ItemInfo';
 import ItemPricing from './ItemPricing';
 import MarketplaceHeader from './MarketplaceHeader';
 import Search from './Search';
-import { Grid, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+
 
 // TODO: Implement Icons (https://database.desertcore.com/)
 

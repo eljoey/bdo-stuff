@@ -1,7 +1,13 @@
 import React from 'react';
 import helpers from '../utils/helpers';
 import numeral from 'numeral';
-import { Table, TableCell, TableContainer, TableHead, TableBody, TableRow, withStyles, Paper, makeStyles } from '@material-ui/core';
+import { withStyles, makeStyles } from '@material-ui/core';
+import Table from '@material-ui/core/Table';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
 import clsx from 'clsx';
 
 const StyledTableCell = withStyles((theme) => ({

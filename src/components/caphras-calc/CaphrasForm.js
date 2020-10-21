@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Button,
-  FormControl,
-  FormHelperText,
-  InputLabel,
-  makeStyles,
-  MenuItem,
-  Select,
-  Typography,
-} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import Typography from '@material-ui/core/Typography';
 import { useHistory } from 'react-router-dom';
 import Send from '@material-ui/icons/Send';
 

@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Loading from '../Loading';
 import ResultsTable from './ResultsTable';
 import api from '../services/api';
-import { makeStyles, Paper, Tab, Tabs } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
 import TabPanel from './TabPanel';
 
 const useStyles = makeStyles((theme) => ({
