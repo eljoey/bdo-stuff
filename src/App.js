@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import { useLocation } from 'react-router-dom';
-
 import Navbar from './components/Navbar';
 import Menu from './components/menu/Menu';
 import SiteMenu from './components/SiteMenu';
-import { Grid } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   root: {

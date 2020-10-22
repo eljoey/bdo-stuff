@@ -41,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
   button: {
     float: 'right',
     marginTop: '10px',
-    backgroundColor: '#3FA3C4',
     color: 'white'
   }
 }));
@@ -84,8 +83,6 @@ const CaphrasForm = () => {
       ...values,
       [e.target.name]: e.target.value,
     });
-
-
   };
 
 
@@ -232,6 +229,7 @@ const CaphrasForm = () => {
         <Button
           type='submit'
           variant='contained'
+          color='primary'
           className={classes.button}
           endIcon={<Send />}>
           Submit

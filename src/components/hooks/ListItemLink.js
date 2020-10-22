@@ -3,7 +3,8 @@ import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import { ListItemText, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
+import ListItemText from '@material-ui/core/ListItemText';
 import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({

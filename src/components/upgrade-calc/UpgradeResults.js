@@ -3,10 +3,12 @@ import Loading from '../Loading';
 import ResultsTable from './ResultsTable';
 import api from '../services/api';
 import { makeStyles } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import TabPanel from './TabPanel';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
   },
   tab: {
     color: 'white'
+  },
+  button: {
+    margin: '25px',
   }
 }));
 
@@ -27,6 +32,7 @@ function a11yProps(index) {
 
 const UpgradeResults = () => {
   const classes = useStyles();
+  const history = useHistory();
   const storageData = JSON.parse(localStorage.getItem('formData'));
   const [value, setValue] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -50,9 +56,21 @@ const UpgradeResults = () => {
     setValue(newValue);
   };
 
+  const handleButtonClick = () => {
+    history.push('/upgrade-calculator');
+  };
+
   if (!loading) {
     return (
       <Paper className={classes.root}>
+        <Button
+          color='primary'
+          variant='contained'
+          className={classes.button}
+          onClick={handleButtonClick}
+        >
+          New Search
+          </Button>
         <Tabs
           value={value}
           indicatorColor='primary'

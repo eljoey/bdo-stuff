@@ -53,12 +53,12 @@ const useStyles = makeStyles((theme) => ({
 
 const RegionSwitch = withStyles({
   switchBase: {
-    color: 'white',
+    color: '#3FA3C4',
     '&$checked': {
-      color: 'white',
+      color: '#3FA3C4',
     },
     '&$checked + $track': {
-      backgroundColor: '#ffac33',
+      backgroundColor: '#3FA3C4',
     },
   },
   checked: {},

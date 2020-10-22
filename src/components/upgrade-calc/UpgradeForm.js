@@ -56,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
   button: {
     float: 'right',
     marginTop: '10px',
-    backgroundColor: '#3FA3C4',
     color: 'white'
   }
 }));
@@ -589,6 +588,7 @@ const UpgradeForm = () => {
         <Button
           type='submit'
           variant='contained'
+          color='primary'
           className={classes.button}
           endIcon={<Send />}>
           Submit
