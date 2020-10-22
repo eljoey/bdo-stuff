@@ -93,7 +93,7 @@ const MainList = ({ setOpen, selected, setSelected }) => {
             )}
           />
         }
-        primary='kutum-or-nouver'
+        primary='Kutum vs Nouver'
         isSelected={selected === 'kutum-or-nouver'}
         setSelected={setSelected}
         setOpen={setOpen}
