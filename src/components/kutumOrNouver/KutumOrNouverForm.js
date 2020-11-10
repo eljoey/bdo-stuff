@@ -122,7 +122,6 @@ const CaphrasForm = () => {
                 onChange={handleRangeChange}
                 min={200}
                 max={300}
-                classname={classes.slider}
               />
             </Grid>
             <Grid item>

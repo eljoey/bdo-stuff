@@ -5,12 +5,16 @@ import Marketplace from './marketplace/Marketplace';
 import CaphrasCalc from './caphras-calc/CaphrasCalc';
 import UpgradeCalc from './upgrade-calc/UpgradeCalc';
 import KutumOrNouver from './kutumOrNouver/KutumOrNouver';
+import Login from './Login';
 
 function SiteMenu() {
   return (
     <Switch>
       <Route exact path='/'>
         <Home />
+      </Route>
+      <Route path='/login'>
+        <Login />
       </Route>
       <Route path='/marketplace'>
         <Marketplace />
