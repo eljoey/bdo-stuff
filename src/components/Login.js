@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Grid, makeStyles, TextField, Typography, withStyles } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
+import Alert from '@material-ui/lab/Alert';
+import { Link, useHistory } from 'react-router-dom';
 import accountService from './services/account';
+import CloseIcon from '@material-ui/icons/Close';
 
 const CustomTextField = withStyles({
     root: {
@@ -53,19 +57,33 @@ const useStyles = makeStyles((theme) => ({
             textDecoration: 'underline'
         }
     },
-
+    error: {
+        marginTop: theme.spacing(1)
+    }
 }));
 
-const Login = () => {
+const Login = ({ setUser }) => {
+    const history = useHistory();
     const classes = useStyles();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [alert, setAlert] = useState(false);
+    const [open, setOpen] = useState(true);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setOpen(true);
+
         const response = await accountService.login({ username, password });
 
-        console.log(response);
+        if (response === 'Invalid Username or Password') {
+            setAlert(true);
+            return;
+        }
+
+        setUser(response);
+        history.push('/');
+
     };
 
     const handleUsernameChange = (e) => {
@@ -101,6 +119,29 @@ const Login = () => {
                     value={password}
                     onChange={handlePasswordChange}
                 />
+                {alert && (
+                    <Collapse in={open}>
+                        <Alert
+                            className={classes.error}
+                            severity="error"
+                            action={
+                                <IconButton
+                                    aria-label="close"
+                                    color="inherit"
+                                    size="small"
+                                    onClick={() => {
+                                        setOpen(false);
+                                        setAlert(false);
+                                    }}
+                                >
+                                    <CloseIcon fontSize="inherit" />
+                                </IconButton>
+                            }
+                        >
+                            Invalid Username or password
+                </Alert>
+                    </Collapse>
+                )}
                 <Button
                     type='submit'
                     variant='contained'
@@ -113,7 +154,7 @@ const Login = () => {
                     <Grid item xs>
                     </Grid>
                     <Grid item className={classes.createAccount}>
-                        <Link to="/create-account" variant="body2" className={classes.createAccount}>
+                        <Link to="/account/create" variant="body2" className={classes.createAccount}>
                             Create Account
                         </Link>
                     </Grid>
