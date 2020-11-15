@@ -6,6 +6,7 @@ import CaphrasCalc from './caphras-calc/CaphrasCalc';
 import UpgradeCalc from './upgrade-calc/UpgradeCalc';
 import KutumOrNouver from './kutumOrNouver/KutumOrNouver';
 import Login from './Login';
+import CreateAccount from './CreateAccount';
 
 function SiteMenu({ user, setUser }) {
   return (
@@ -15,6 +16,9 @@ function SiteMenu({ user, setUser }) {
       </Route>
       <Route path='/login'>
         <Login setUser={setUser} />
+      </Route>
+      <Route path='/account/create'>
+        <CreateAccount setUser={setUser} />
       </Route>
       <Route path='/marketplace'>
         <Marketplace />

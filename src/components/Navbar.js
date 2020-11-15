@@ -62,7 +62,8 @@ const Navbar = ({ setSelected, open, setOpen, user }) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (path) => {
+    history.push(path);
     setAnchorEl(null);
   };
 
@@ -112,9 +113,7 @@ const Navbar = ({ setSelected, open, setOpen, user }) => {
             {user.username}
           </Typography>
           <AccountCircle />
-
         </IconButton>
-
         <Menu
           id="menu-appbar"
           anchorEl={anchorEl}
@@ -130,8 +129,8 @@ const Navbar = ({ setSelected, open, setOpen, user }) => {
           open={accountMenuOpen}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
+          <MenuItem onClick={() => handleClose('/profile')}>Profile</MenuItem>
+          <MenuItem onClick={() => handleClose('/account')}>My account</MenuItem>
         </Menu>
       </div>
     );
