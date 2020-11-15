@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
 const baseUrl = 'http://localhost:3000/bdo-stuff';
 
 let token = localStorage.getItem('token') || '';
@@ -8,6 +9,8 @@ let tokenExipration = localStorage.getItem('tokenExpiration') || '';
 const setToken = (newToken, newTokenExpiration) => {
     token = newToken;
     tokenExipration = newTokenExpiration;
+
+
 
     localStorage.setItem('token', newToken);
     localStorage.setItem('tokenExpiration', newTokenExpiration);
@@ -23,7 +26,7 @@ const removeTokens = () => {
 
 const login = async (formData) => {
     try {
-        const response = await axios.post(`${baseUrl}/login`, formData, { withCredentials: true });
+        const response = await axios.post(`${baseUrl}/login`, formData);
         const data = response.data;
         const userInfo = {
             username: data.username,
@@ -43,13 +46,44 @@ const login = async (formData) => {
 };
 
 const logout = async () => {
-    await axios.post(`${baseUrl}/logout`, {}, { withCredentials: true });
+    await axios.post(`${baseUrl}/logout`);
     removeTokens();
+};
+
+const refreshToken = async () => {
+
+
+    const response = await axios.post(`${baseUrl}/refresh_token`);
+    const data = response.data;
+    setToken(data.token, data.tokenExpires);
+
+    return response.data;
+};
+
+const getAccountInfo = async () => {
+    try {
+        checkTokenExpired();
+
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        };
+
+        const response = await axios.get(`${baseUrl}/user`, config);
+        const data = response.data;
+
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+
+
 };
 
 const createAccount = async (formData) => {
     try {
-        const response = await axios.post(`${baseUrl}/user`, formData);
+        const response = await axios.post(`${baseUrl}/user`, formData, { withCredentials: true });
         const data = response.data;
         const userInfo = {
             username: data.username,
@@ -62,13 +96,28 @@ const createAccount = async (formData) => {
         return { userInfo };
     } catch (err) {
         const errorMessage = err.response.data.error;
+
+        if (!errorMessage) {
+            return err;
+        }
         return { error: errorMessage };
+    }
+};
+
+const checkTokenExpired = async () => {
+    const tokenExpires = new Date(tokenExipration);
+    const timeNow = new Date();
+
+    if (tokenExpires < timeNow) {
+        await refreshToken();
     }
 };
 
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
     login,
+    logout,
+    refreshToken,
     createAccount,
-    logout
+    getAccountInfo,
 };

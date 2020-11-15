@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Navbar = ({ setSelected, open, setOpen, user, setUser }) => {
+const Navbar = ({ setSelected, open, setOpen, user, setUser, loggingIn, setLoggingIn }) => {
   const history = useHistory();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -74,6 +74,7 @@ const Navbar = ({ setSelected, open, setOpen, user, setUser }) => {
 
   const handleLogout = async () => {
     setUser(null);
+    setAnchorEl(null);
     await accountService.logout();
 
     history.push('/');
@@ -181,8 +182,7 @@ const Navbar = ({ setSelected, open, setOpen, user, setUser }) => {
           >
             BDO-Stuff
           </Typography>
-          {!user && renderLogin()}
-          {user && renderUser()}
+          {loggingIn ? null : user ? renderUser() : renderLogin()}
         </Toolbar>
 
       </AppBar>

@@ -97,9 +97,9 @@ const Login = ({ setUser }) => {
 
 
         const response = await accountService.createAccount({ username, password, email });
-
         // error check
         if (response.error) {
+            console.log(response.error);
             const usernameTaken = response.error.includes('expected `username` to be unique');
             const emailTaken = response.error.includes('expected `email` to be unique');
             if (usernameTaken && emailTaken) {
@@ -202,6 +202,7 @@ const Login = ({ setUser }) => {
                     required
                     id='email'
                     label='Email'
+                    type='email'
                     value={email}
                     onChange={handleEmailChange}
                 />

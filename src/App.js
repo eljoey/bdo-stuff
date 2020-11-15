@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import { useLocation } from 'react-router-dom';
@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Menu from './components/menu/Menu';
 import SiteMenu from './components/SiteMenu';
 import Grid from '@material-ui/core/Grid';
+import accountService from './components/services/account';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,11 +35,30 @@ function App() {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(location);
   const [user, setUser] = useState(null);
+  const [loggingIn, setLoggingIn] = useState(true);
+
+  useEffect(() => {
+    const login = async () => {
+      const response = await accountService.getAccountInfo();
+
+      setUser(response);
+
+      setLoggingIn(false);
+
+    };
+
+    if (localStorage.getItem('token')) {
+      login();
+    } else {
+      setLoggingIn(false);
+    }
+
+  }, []);
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Navbar open={open} setOpen={setOpen} setSelected={setSelected} user={user} setUser={setUser} />
+      <Navbar open={open} setOpen={setOpen} setSelected={setSelected} user={user} setUser={setUser} loggingIn={loggingIn} setLoggingIn={setLoggingIn} />
       <Menu open={open} setOpen={setOpen} selected={selected} setSelected={setSelected} />
       <Grid container spacing={0} className={classes.content}>
         <SiteMenu user={user} setUser={setUser} />
