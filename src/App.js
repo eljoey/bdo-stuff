@@ -42,9 +42,7 @@ function App() {
       const response = await accountService.getAccountInfo();
 
       setUser(response);
-
       setLoggingIn(false);
-
     };
 
     if (localStorage.getItem('token')) {

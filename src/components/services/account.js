@@ -10,8 +10,6 @@ const setToken = (newToken, newTokenExpiration) => {
     token = newToken;
     tokenExipration = newTokenExpiration;
 
-
-
     localStorage.setItem('token', newToken);
     localStorage.setItem('tokenExpiration', newTokenExpiration);
 };
@@ -51,8 +49,6 @@ const logout = async () => {
 };
 
 const refreshToken = async () => {
-
-
     const response = await axios.post(`${baseUrl}/refresh_token`);
     const data = response.data;
     setToken(data.token, data.tokenExpires);

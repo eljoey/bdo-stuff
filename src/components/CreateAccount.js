@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { Button, makeStyles, TextField, Typography, withStyles } from '@material-ui/core';
+import { makeStyles, withStyles } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Alert from '@material-ui/lab/Alert';
 import { useHistory } from 'react-router-dom';
 import accountService from './services/account';
 import CloseIcon from '@material-ui/icons/Close';
+import { Send } from '@material-ui/icons';
 
 const CustomTextField = withStyles({
     root: {
@@ -62,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Login = ({ setUser }) => {
+const CreateAccount = ({ setUser }) => {
     const history = useHistory();
     const classes = useStyles();
     const [username, setUsername] = useState('');
@@ -95,8 +99,8 @@ const Login = ({ setUser }) => {
             return;
         }
 
-
         const response = await accountService.createAccount({ username, password, email });
+
         // error check
         if (response.error) {
             console.log(response.error);
@@ -120,7 +124,6 @@ const Login = ({ setUser }) => {
         }
 
         // Successful creation
-
         setUser(response.userInfo);
         history.push('/');
 
@@ -149,7 +152,6 @@ const Login = ({ setUser }) => {
     return (
         <div className={classes.root}>
             <Typography variant='h4' className={classes.title}>Create your account</Typography>
-
             <form onSubmit={handleSubmit} className={classes.form}>
                 {alert && (
                     <Collapse in={open}>
@@ -160,7 +162,7 @@ const Login = ({ setUser }) => {
                                 <IconButton
                                     aria-label="close"
                                     color="inherit"
-                                    size="small"
+
                                     onClick={() => {
                                         setOpen(false);
                                         setAlert(false);
@@ -212,12 +214,13 @@ const Login = ({ setUser }) => {
                     variant='contained'
                     color='primary'
                     className={classes.button}
+                    endIcon={<Send />}
                 >
-                    Login
+                    Submit
                 </Button>
             </form>
         </div>
     );
 };
 
-export default Login;
+export default CreateAccount;

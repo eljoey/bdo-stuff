@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import { Button, Grid, makeStyles, TextField, Typography, withStyles } from '@material-ui/core';
+import { makeStyles, withStyles } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Alert from '@material-ui/lab/Alert';
 import { Link, useHistory } from 'react-router-dom';
 import accountService from './services/account';
 import CloseIcon from '@material-ui/icons/Close';
+import { Send } from '@material-ui/icons';
 
 const CustomTextField = withStyles({
     root: {
@@ -147,6 +152,7 @@ const Login = ({ setUser }) => {
                     variant='contained'
                     color='primary'
                     className={classes.button}
+                    endIcon={<Send />}
                 >
                     Login
                 </Button>
