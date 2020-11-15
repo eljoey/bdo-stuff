@@ -6,11 +6,15 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { useHistory } from 'react-router-dom';
+import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link, Menu, MenuItem } from '@material-ui/core';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { AccountCircle } from '@material-ui/icons';
+import accountService from './services/account';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -35,15 +39,16 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 'auto',
     marginRight: '0'
   },
-  loginLink: {
-    marginRight: theme.spacing(1)
-  },
   username: {
     marginRight: theme.spacing(1)
+  },
+  divider: {
+    borderRight: '1px solid white',
+    margin: '6px',
   }
 }));
 
-const Navbar = ({ setSelected, open, setOpen, user }) => {
+const Navbar = ({ setSelected, open, setOpen, user, setUser }) => {
   const history = useHistory();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -67,30 +72,36 @@ const Navbar = ({ setSelected, open, setOpen, user }) => {
     setAnchorEl(null);
   };
 
+  const handleLogout = async () => {
+    setUser(null);
+    await accountService.logout();
+
+    history.push('/');
+  };
+
   const renderLogin = () => {
     return (
-      <div className={classes.alignRight}>
+      <Grid className={classes.alignRight}>
         <Link component={RouterLink} to='/login' color='inherit'>
           <Typography
             component='p'
             color='inherit'
             noWrap
-            className={classes.loginLink}
           >
             Login
           </Typography>
         </Link>
+        <div className={classes.divider} />
         <Link component={RouterLink} to='/account/create' color='inherit'>
           <Typography
             component='p'
             color='inherit'
             noWrap
-            className={classes.loginLink}
           >
             Create Account
           </Typography>
         </Link>
-      </div>
+      </Grid>
     );
   };
 
@@ -131,6 +142,8 @@ const Navbar = ({ setSelected, open, setOpen, user }) => {
         >
           <MenuItem onClick={() => handleClose('/profile')}>Profile</MenuItem>
           <MenuItem onClick={() => handleClose('/account')}>My account</MenuItem>
+          <Divider />
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
       </div>
     );

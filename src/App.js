@@ -38,7 +38,7 @@ function App() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Navbar open={open} setOpen={setOpen} setSelected={setSelected} user={user} />
+      <Navbar open={open} setOpen={setOpen} setSelected={setSelected} user={user} setUser={setUser} />
       <Menu open={open} setOpen={setOpen} selected={selected} setSelected={setSelected} />
       <Grid container spacing={0} className={classes.content}>
         <SiteMenu user={user} setUser={setUser} />

@@ -13,9 +13,17 @@ const setToken = (newToken, newTokenExpiration) => {
     localStorage.setItem('tokenExpiration', newTokenExpiration);
 };
 
+const removeTokens = () => {
+    token = '';
+    tokenExipration = '';
+
+    localStorage.removeItem('token');
+    localStorage.removeItem('tokenExpiration');
+};
+
 const login = async (formData) => {
     try {
-        const response = await axios.post(`${baseUrl}/login`, formData);
+        const response = await axios.post(`${baseUrl}/login`, formData, { withCredentials: true });
         const data = response.data;
         const userInfo = {
             username: data.username,
@@ -32,6 +40,11 @@ const login = async (formData) => {
         const errorMessage = err.response.data.error;
         return errorMessage;
     }
+};
+
+const logout = async () => {
+    await axios.post(`${baseUrl}/logout`, {}, { withCredentials: true });
+    removeTokens();
 };
 
 const createAccount = async (formData) => {
@@ -56,5 +69,6 @@ const createAccount = async (formData) => {
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
     login,
-    createAccount
+    createAccount,
+    logout
 };
