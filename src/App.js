@@ -40,7 +40,6 @@ function App() {
   useEffect(() => {
     const login = async () => {
       const response = await accountService.getAccountInfo();
-
       setUser(response);
       setLoggingIn(false);
     };
@@ -50,14 +49,13 @@ function App() {
     } else {
       setLoggingIn(false);
     }
-
   }, []);
 
   return (
     <div className={classes.root}>
       <CssBaseline />
       <Navbar open={open} setOpen={setOpen} setSelected={setSelected} user={user} setUser={setUser} loggingIn={loggingIn} setLoggingIn={setLoggingIn} />
-      <Menu open={open} setOpen={setOpen} selected={selected} setSelected={setSelected} />
+      <Menu open={open} setOpen={setOpen} selected={selected} setSelected={setSelected} user={user} />
       <Grid container spacing={0} className={classes.content}>
         <SiteMenu user={user} setUser={setUser} />
       </Grid>

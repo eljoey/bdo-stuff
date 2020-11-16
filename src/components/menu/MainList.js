@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Storefront from '@material-ui/icons/Storefront';
 import AddShoppingCart from '@material-ui/icons/AddShoppingCart';
 import CompareArrowsIcon from '@material-ui/icons/CompareArrows';
+import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import Home from '@material-ui/icons/Home';
 import Opacity from '@material-ui/icons/Opacity';
 
@@ -18,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MainList = ({ setOpen, selected, setSelected }) => {
+
+const MainList = ({ setOpen, selected, setSelected, user }) => {
   const classes = useStyles();
 
   return (
@@ -98,6 +100,23 @@ const MainList = ({ setOpen, selected, setSelected }) => {
         setSelected={setSelected}
         setOpen={setOpen}
       />
+
+      {/* {Only shows if user logged in} */}
+      { user && <ListItemLink
+        to='alerts'
+        icon={
+          <NotificationsNoneIcon
+            className={clsx(
+              classes.whiteColor,
+              selected === 'alerts' && classes.linkSelected
+            )}
+          />
+        }
+        primary='Alerts'
+        isSelected={selected === 'alerts'}
+        setSelected={setSelected}
+        setOpen={setOpen}
+      />}
     </List>
   );
 };

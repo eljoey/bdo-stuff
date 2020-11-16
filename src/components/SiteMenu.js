@@ -7,6 +7,7 @@ import UpgradeCalc from './upgrade-calc/UpgradeCalc';
 import KutumOrNouver from './kutumOrNouver/KutumOrNouver';
 import Login from './Login';
 import CreateAccount from './CreateAccount';
+import Alerts from './Alerts';
 
 function SiteMenu({ user, setUser }) {
   return (
@@ -31,6 +32,9 @@ function SiteMenu({ user, setUser }) {
       </Route>
       <Route path='/kutum-or-nouver'>
         <KutumOrNouver />
+      </Route>
+      <Route path='/alerts'>
+        <Alerts user={user} />
       </Route>
     </Switch>
   );

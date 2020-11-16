@@ -54,7 +54,7 @@ const Marketplace = () => {
           <MarketplaceHeader />
         </Grid>
         <Grid item className={classes.list}>
-          <List url={url}></List>
+          <List url={url} ></List>
         </Grid>
         <Grid item className={classes.infoPanel}>
           <Switch>

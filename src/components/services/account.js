@@ -100,6 +100,22 @@ const createAccount = async (formData) => {
     }
 };
 
+const getAlerts = async () => {
+    try {
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        };
+
+        const response = await axios.get(`${baseUrl}/alert`, config);
+        const data = response.data;
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 const checkTokenExpired = async () => {
     const tokenExpires = new Date(tokenExipration);
     const timeNow = new Date();
@@ -116,4 +132,5 @@ export default {
     refreshToken,
     createAccount,
     getAccountInfo,
+    getAlerts
 };

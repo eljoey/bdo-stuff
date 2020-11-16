@@ -139,8 +139,8 @@ const ItemInfo = ({ setItemName }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {itemInfo.map((item) => (
-              <TableRow className={classes.marketItem}>
+            {itemInfo.map((item, index) => (
+              <TableRow className={classes.marketItem} key={index}>
                 <TableCell className={classes.tableCell}>
                   <Typography
                     component={Link}
@@ -151,7 +151,6 @@ const ItemInfo = ({ setItemName }) => {
                     {`${enhanceLevelTitle[item.subKey]}${item.name}`}
                     {'  '}
                     <Typography
-                      variant='span'
                       style={{ color: 'white' }}
                     >{`$${item.pricePerOne
                       .toString()
