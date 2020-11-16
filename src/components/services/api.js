@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+// will get cors if removed
+axios.defaults.withCredentials = false;
+
 const baseUrl = 'https://bdo-api-helper.herokuapp.com';
 let region = `?region=${JSON.parse(localStorage.getItem('region'))}`;
 

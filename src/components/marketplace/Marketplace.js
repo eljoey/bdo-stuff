@@ -58,13 +58,13 @@ const Marketplace = () => {
         </Grid>
         <Grid item className={classes.infoPanel}>
           <Switch>
-            <Route path={`${path}/list/:main-:sub/:itemId/:enhanceLevel`}>
+            <Route exact path={`${path}/list/:main-:sub/:itemId/:enhanceLevel`}>
               <ItemPricing itemName={itemName} />
             </Route>
-            <Route path={`${path}/list/:main-:sub/:itemId`}>
+            <Route exact path={`${path}/list/:main-:sub/:itemId`}>
               <ItemInfo setItemName={setItemName} />
             </Route>
-            <Route path={`${path}/list/:main-:sub`}>
+            <Route exact path={`${path}/list/:main-:sub`}>
               <Items className='col s8' />
             </Route>
             <Route path={`${path}/search/:searchTerm`}>
