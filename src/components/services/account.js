@@ -102,6 +102,8 @@ const createAccount = async (formData) => {
 
 const getAlerts = async () => {
     try {
+        checkTokenExpired();
+
         const config = {
             headers: {
                 'Authorization': 'Bearer ' + token
@@ -125,6 +127,63 @@ const checkTokenExpired = async () => {
     }
 };
 
+
+const updateAlert = async (formData, id) => {
+    try {
+        checkTokenExpired();
+
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        };
+
+        const updatedAlert = await axios.put(`${baseUrl}/alert/${id}`, formData, config);
+        const data = updatedAlert.data;
+
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+const createAlert = async (formData) => {
+    try {
+        checkTokenExpired();
+
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        };
+
+        const response = await axios.post(`${baseUrl}/alert`, formData, config);
+        const data = response.data;
+
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+const deleteAlert = async (id) => {
+    try {
+        checkTokenExpired();
+
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        };
+
+        await axios.delete(`${baseUrl}/alert/${id}`, config);
+
+        return;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
     login,
@@ -132,5 +191,8 @@ export default {
     refreshToken,
     createAccount,
     getAccountInfo,
-    getAlerts
+    getAlerts,
+    updateAlert,
+    createAlert,
+    deleteAlert
 };
