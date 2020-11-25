@@ -8,18 +8,19 @@ import KutumOrNouver from './kutumOrNouver/KutumOrNouver';
 import Login from './Login';
 import CreateAccount from './CreateAccount';
 import Alerts from './Alerts';
+import PrivateRoute from './hooks/PrivateRoute';
 
-function SiteMenu({ user, setUser }) {
+function SiteMenu({ updateUser }) {
   return (
     <Switch>
       <Route exact path='/'>
         <Home />
       </Route>
       <Route path='/login'>
-        <Login setUser={setUser} />
+        <Login updateUser={updateUser} />
       </Route>
       <Route path='/account/create'>
-        <CreateAccount setUser={setUser} />
+        <CreateAccount updateUser={updateUser} />
       </Route>
       <Route path='/marketplace'>
         <Marketplace />
@@ -33,9 +34,7 @@ function SiteMenu({ user, setUser }) {
       <Route path='/kutum-or-nouver'>
         <KutumOrNouver />
       </Route>
-      <Route path='/alerts'>
-        <Alerts user={user} />
-      </Route>
+      <PrivateRoute path='/alerts' component={Alerts} />
     </Switch>
   );
 }

@@ -11,6 +11,8 @@ const setRegionLocation = (location) => {
 };
 
 const getItemList = async (main, sub) => {
+  axios.defaults.withCredentials = false;
+
   const itemList = await axios.get(
     `${baseUrl}/marketplace-clone/item-list/${main}/${sub}${region}`
   );
@@ -19,6 +21,8 @@ const getItemList = async (main, sub) => {
 };
 
 const getItemInfo = async (id) => {
+  axios.defaults.withCredentials = false;
+
   const itemInfo = await axios.get(
     `${baseUrl}/marketplace-clone/item-info/${id}${region}`
   );
@@ -27,6 +31,8 @@ const getItemInfo = async (id) => {
 };
 
 const getItemPricing = async (id, level) => {
+  axios.defaults.withCredentials = false;
+
   const itemPricing = await axios.get(
     `${baseUrl}/marketplace-clone/item-pricing/${id}/${level}${region}`
   );
@@ -35,6 +41,8 @@ const getItemPricing = async (id, level) => {
 };
 
 const getItemSearch = async (value) => {
+  axios.defaults.withCredentials = false;
+
   const searchResult = await axios.get(
     `${baseUrl}/marketplace-clone/item-search/${value}${region}`
   );
@@ -49,6 +57,9 @@ const getCaphrasResult = async (
   desiredLevel,
   region
 ) => {
+
+  axios.defaults.withCredentials = false;
+
   const caphrasResult = await axios.get(
     `${baseUrl}/api/caphras-calc?item=${item}&enhLevel=${enhLevel}&curLevel=${curLevel}&desiredLevel=${desiredLevel}&region=${region}`
   );
@@ -57,6 +68,8 @@ const getCaphrasResult = async (
 };
 
 const postItemUpgrade = async (formData, region) => {
+  axios.defaults.withCredentials = false;
+
   if (region === null || formData === null) {
     return;
   }
@@ -75,6 +88,9 @@ const getKutumOrNouver = async (
   nouverLvl,
   nouverCaphra
 ) => {
+
+  axios.defaults.withCredentials = false;
+
   const results = await axios.get(
     `${baseUrl}/api/kutum-or-nouver?baseAp=${baseAp}&kutumLvl=${kutumLvl}&kutumCaphra=${kutumCaphra}&nouverLvl=${nouverLvl}&nouverCaphra=${nouverCaphra}`
   );

@@ -40,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
         margin: 'auto',
         padding: '25px',
         borderRadius: '5px',
+        [theme.breakpoints.down('xs')]: {
+            height: '90%',
+            margin: '5px'
+        }
     },
     form: {
         marginTop: theme.spacing(1),
@@ -67,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Login = ({ setUser }) => {
+const Login = ({ updateUser }) => {
     const history = useHistory();
     const classes = useStyles();
     const [username, setUsername] = useState('');
@@ -86,7 +90,7 @@ const Login = ({ setUser }) => {
             return;
         }
 
-        setUser(response);
+        updateUser(response);
         history.push('/');
 
     };
@@ -144,7 +148,7 @@ const Login = ({ setUser }) => {
                             }
                         >
                             Invalid Username or password
-                </Alert>
+                        </Alert>
                     </Collapse>
                 )}
                 <Button

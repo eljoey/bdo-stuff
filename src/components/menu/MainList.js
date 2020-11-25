@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const MainList = ({ setOpen, selected, setSelected, user }) => {
+const MainList = ({ updateOpen, selected, updateSelected, user }) => {
   const classes = useStyles();
 
   return (
@@ -37,8 +37,8 @@ const MainList = ({ setOpen, selected, setSelected, user }) => {
         }
         primary='Home'
         isSelected={selected === ''}
-        setSelected={setSelected}
-        setOpen={setOpen}
+        updateSelected={updateSelected}
+        updateOpen={updateOpen}
       />
       <ListItemLink
         to='marketplace'
@@ -52,8 +52,8 @@ const MainList = ({ setOpen, selected, setSelected, user }) => {
         }
         primary='Marketplace'
         isSelected={selected === 'marketplace'}
-        setSelected={setSelected}
-        setOpen={setOpen}
+        updateSelected={updateSelected}
+        updateOpen={updateOpen}
       />
       <ListItemLink
         to='caphras-calculator'
@@ -67,8 +67,8 @@ const MainList = ({ setOpen, selected, setSelected, user }) => {
         }
         primary='Caphras Calculator'
         isSelected={selected === 'caphras-calculator'}
-        setSelected={setSelected}
-        setOpen={setOpen}
+        updateSelected={updateSelected}
+        updateOpen={updateOpen}
       />
       <ListItemLink
         to='upgrade-calculator'
@@ -82,8 +82,8 @@ const MainList = ({ setOpen, selected, setSelected, user }) => {
         }
         primary='Upgrade Calculator'
         isSelected={selected === 'upgrade-calculator'}
-        setSelected={setSelected}
-        setOpen={setOpen}
+        updateSelected={updateSelected}
+        updateOpen={updateOpen}
       />
       <ListItemLink
         to='kutum-or-nouver'
@@ -97,8 +97,8 @@ const MainList = ({ setOpen, selected, setSelected, user }) => {
         }
         primary='Kutum vs Nouver'
         isSelected={selected === 'kutum-or-nouver'}
-        setSelected={setSelected}
-        setOpen={setOpen}
+        updateSelected={updateSelected}
+        updateOpen={updateOpen}
       />
 
       {/* {Only shows if user logged in} */}
@@ -114,8 +114,8 @@ const MainList = ({ setOpen, selected, setSelected, user }) => {
         }
         primary='Alerts'
         isSelected={selected === 'alerts'}
-        setSelected={setSelected}
-        setOpen={setOpen}
+        updateSelected={updateSelected}
+        updateOpen={updateOpen}
       />}
     </List>
   );

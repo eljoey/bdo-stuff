@@ -48,19 +48,19 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Navbar = ({ setSelected, open, setOpen, user, setUser, loggingIn, setLoggingIn }) => {
+const Navbar = ({ updateSelected, open, updateOpen, user, updateUser, loggingIn }) => {
   const history = useHistory();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const accountMenuOpen = Boolean(anchorEl);
 
   const handleDrawerClick = () => {
-    setOpen(!open);
+    updateOpen(!open);
   };
 
   const handleTitleClick = () => {
     history.push('/');
-    setSelected('');
+    updateSelected('');
   };
 
   const handleMenu = (event) => {
@@ -73,7 +73,7 @@ const Navbar = ({ setSelected, open, setOpen, user, setUser, loggingIn, setLoggi
   };
 
   const handleLogout = async () => {
-    setUser(null);
+    updateUser(null);
     setAnchorEl(null);
     await accountService.logout();
 
@@ -141,9 +141,6 @@ const Navbar = ({ setSelected, open, setOpen, user, setUser, loggingIn, setLoggi
           open={accountMenuOpen}
           onClose={handleClose}
         >
-          <MenuItem onClick={() => handleClose('/profile')}>Profile</MenuItem>
-          <MenuItem onClick={() => handleClose('/account')}>My account</MenuItem>
-          <Divider />
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
       </div>

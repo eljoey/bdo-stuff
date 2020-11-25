@@ -4,11 +4,11 @@ axios.defaults.withCredentials = true;
 const baseUrl = 'http://localhost:3000/bdo-stuff';
 
 let token = localStorage.getItem('token') || '';
-let tokenExipration = localStorage.getItem('tokenExpiration') || '';
+let tokenExpiration = localStorage.getItem('tokenExpiration') || '';
 
 const setToken = (newToken, newTokenExpiration) => {
     token = newToken;
-    tokenExipration = newTokenExpiration;
+    tokenExpiration = newTokenExpiration;
 
     localStorage.setItem('token', newToken);
     localStorage.setItem('tokenExpiration', newTokenExpiration);
@@ -16,10 +16,32 @@ const setToken = (newToken, newTokenExpiration) => {
 
 const removeTokens = () => {
     token = '';
-    tokenExipration = '';
+    tokenExpiration = '';
 
     localStorage.removeItem('token');
     localStorage.removeItem('tokenExpiration');
+};
+
+const checkTokenExpired = async () => {
+    axios.defaults.withCredentials = true;
+    const tokenExpires = new Date(tokenExpiration);
+    const timeNow = new Date();
+
+    if (tokenExpires < timeNow) {
+        await refreshToken();
+    }
+};
+
+const refreshToken = async () => {
+    try {
+
+        const response = await axios.post(`${baseUrl}/refresh_token`);
+        const data = response.data;
+        setToken(data.token, data.tokenExpires);
+
+    } catch (err) {
+        console.log(err);
+    }
 };
 
 const login = async (formData) => {
@@ -44,21 +66,26 @@ const login = async (formData) => {
 };
 
 const logout = async () => {
-    await axios.post(`${baseUrl}/logout`);
-    removeTokens();
-};
+    try {
+        axios.defaults.withCredentials = true;
 
-const refreshToken = async () => {
-    const response = await axios.post(`${baseUrl}/refresh_token`);
-    const data = response.data;
-    setToken(data.token, data.tokenExpires);
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        };
 
-    return response.data;
+        await axios.post(`${baseUrl}/logout`, config);
+        removeTokens();
+
+    } catch (err) {
+        console.log(err);
+    }
 };
 
 const getAccountInfo = async () => {
     try {
-        checkTokenExpired();
+        await checkTokenExpired();
 
         const config = {
             headers: {
@@ -70,11 +97,9 @@ const getAccountInfo = async () => {
         const data = response.data;
 
         return data;
-    } catch (error) {
-        console.log(error);
+    } catch (err) {
+        console.log(err);
     }
-
-
 };
 
 const createAccount = async (formData) => {
@@ -94,7 +119,7 @@ const createAccount = async (formData) => {
         const errorMessage = err.response.data.error;
 
         if (!errorMessage) {
-            return err;
+            return { error: err.response.data.errors[0].msg };
         }
         return { error: errorMessage };
     }
@@ -102,7 +127,7 @@ const createAccount = async (formData) => {
 
 const getAlerts = async () => {
     try {
-        checkTokenExpired();
+        await checkTokenExpired();
 
         const config = {
             headers: {
@@ -118,19 +143,9 @@ const getAlerts = async () => {
     }
 };
 
-const checkTokenExpired = async () => {
-    const tokenExpires = new Date(tokenExipration);
-    const timeNow = new Date();
-
-    if (tokenExpires < timeNow) {
-        await refreshToken();
-    }
-};
-
-
 const updateAlert = async (formData, id) => {
     try {
-        checkTokenExpired();
+        await checkTokenExpired();
 
         const config = {
             headers: {
@@ -149,7 +164,7 @@ const updateAlert = async (formData, id) => {
 
 const createAlert = async (formData) => {
     try {
-        checkTokenExpired();
+        await checkTokenExpired();
 
         const config = {
             headers: {
@@ -168,7 +183,7 @@ const createAlert = async (formData) => {
 
 const deleteAlert = async (id) => {
     try {
-        checkTokenExpired();
+        await checkTokenExpired();
 
         const config = {
             headers: {

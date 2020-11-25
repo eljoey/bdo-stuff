@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ListItemLink = ({ icon, primary, to, isSelected, setSelected, setOpen }) => {
+const ListItemLink = ({ icon, primary, to, isSelected, updateSelected, updateOpen }) => {
   const classes = useStyles();
 
   const renderLink = useMemo(
@@ -28,8 +28,8 @@ const ListItemLink = ({ icon, primary, to, isSelected, setSelected, setOpen }) =
   );
 
   const handleLinkSelection = () => {
-    setSelected(to);
-    setOpen(false);
+    updateSelected(to);
+    updateOpen(false);
   };
 
   return (

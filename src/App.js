@@ -51,13 +51,25 @@ function App() {
     }
   }, []);
 
+  const updateUser = (info) => {
+    setUser(info);
+  };
+
+  const updateOpen = (info) => {
+    setOpen(info);
+  };
+
+  const updateSelected = (info) => {
+    setSelected(info);
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Navbar open={open} setOpen={setOpen} setSelected={setSelected} user={user} setUser={setUser} loggingIn={loggingIn} setLoggingIn={setLoggingIn} />
-      <Menu open={open} setOpen={setOpen} selected={selected} setSelected={setSelected} user={user} />
+      <Navbar open={open} updateOpen={updateOpen} updateSelected={updateSelected} user={user} updateUser={updateUser} loggingIn={loggingIn} />
+      <Menu open={open} updateOpen={updateOpen} selected={selected} updateSelected={updateSelected} user={user} />
       <Grid container spacing={0} className={classes.content}>
-        <SiteMenu user={user} setUser={setUser} />
+        <SiteMenu updateUser={updateUser} />
       </Grid>
     </div>
   );

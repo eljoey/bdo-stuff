@@ -9,9 +9,6 @@ import Search from './Search';
 import { makeStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
-
-// TODO: Implement Icons (https://database.desertcore.com/)
-
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: '20px 0',
@@ -47,6 +44,10 @@ const Marketplace = () => {
   const { path, url } = useRouteMatch();
   const [itemName, setItemName] = useState(null);
 
+  const updateItemName = (name) => {
+    setItemName(name);
+  };
+
   return (
     <>
       <Grid container className={classes.root}>
@@ -62,7 +63,7 @@ const Marketplace = () => {
               <ItemPricing itemName={itemName} />
             </Route>
             <Route exact path={`${path}/list/:main-:sub/:itemId`}>
-              <ItemInfo setItemName={setItemName} />
+              <ItemInfo updateItemName={updateItemName} />
             </Route>
             <Route exact path={`${path}/list/:main-:sub`}>
               <Items className='col s8' />

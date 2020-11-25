@@ -10,6 +10,10 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     padding: '25px',
     borderRadius: '5px',
+    [theme.breakpoints.down('xs')]: {
+      height: '90%',
+      margin: '5px'
+    }
   },
 }));
 

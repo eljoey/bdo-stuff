@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Menu = ({ open, setOpen, selected, setSelected, user }) => {
+const Menu = ({ open, updateOpen, selected, updateSelected, user }) => {
   const classes = useStyles();
 
   return (
@@ -52,7 +52,7 @@ const Menu = ({ open, setOpen, selected, setSelected, user }) => {
       }}
       open={open}
     >
-      <MainList selected={selected} setSelected={setSelected} setOpen={setOpen} user={user} />
+      <MainList selected={selected} updateSelected={updateSelected} updateOpen={updateOpen} user={user} />
       <Divider />
       <MiscList />
     </Drawer>

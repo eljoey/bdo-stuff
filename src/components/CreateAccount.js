@@ -39,6 +39,10 @@ const useStyles = makeStyles((theme) => ({
         margin: 'auto',
         padding: '25px',
         borderRadius: '5px',
+        [theme.breakpoints.down('xs')]: {
+            height: '90%',
+            margin: '5px auto'
+        }
     },
     form: {
         marginTop: theme.spacing(1),
@@ -66,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const CreateAccount = ({ setUser }) => {
+const CreateAccount = ({ updateUser }) => {
     const history = useHistory();
     const classes = useStyles();
     const [username, setUsername] = useState('');
@@ -103,9 +107,9 @@ const CreateAccount = ({ setUser }) => {
 
         // error check
         if (response.error) {
-            console.log(response.error);
             const usernameTaken = response.error.includes('expected `username` to be unique');
             const emailTaken = response.error.includes('expected `email` to be unique');
+            const invalidEmail = response.error.includes('Invalid email');
             if (usernameTaken && emailTaken) {
                 setAlert(true);
                 setErrorMessage('Username and email are already in use');
@@ -121,10 +125,15 @@ const CreateAccount = ({ setUser }) => {
                 setErrorMessage('Email already in use');
                 return;
             }
+            if (invalidEmail) {
+                setAlert(true);
+                setErrorMessage('Invalid email');
+                return;
+            }
         }
 
         // Successful creation
-        setUser(response.userInfo);
+        updateUser(response.userInfo);
         history.push('/');
 
     };

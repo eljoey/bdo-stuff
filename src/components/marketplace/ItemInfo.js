@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ItemInfo = ({ setItemName }) => {
+const ItemInfo = ({ updateItemName }) => {
   const classes = useStyles();
   const { itemId } = useParams();
   const { url } = useRouteMatch();
@@ -73,7 +73,7 @@ const ItemInfo = ({ setItemName }) => {
   }, [itemId]);
 
   if (!loading) {
-    setItemName(itemInfo[0].name);
+    updateItemName(itemInfo[0].name);
 
     const accessoryCheck = (category, index) => {
       const names = {
