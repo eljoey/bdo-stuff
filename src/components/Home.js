@@ -26,6 +26,15 @@ const Home = () => {
       <div>
         <Typography variant='h6'>Updates</Typography>
         <ul>
+          <Typography component='li'>Nov 2020</Typography>
+          <ul>
+            <Typography component='li'>Add user creation</Typography>
+          </ul>
+          <ul>
+            <Typography component='li'>Add alert creation(I'll make this more informative tomorow)</Typography>
+          </ul>
+        </ul>
+        <ul>
           <Typography component='li'>Oct 2020</Typography>
           <ul>
             <Typography component='li'>Re-style website, plus responsive views for mobile.</Typography>
@@ -35,7 +44,6 @@ const Home = () => {
       <div>
         <Typography variant='h6'>Future Updates</Typography>
         <ul>
-          <Typography component='li'>Item price alerts plus account creation</Typography>
           <Typography component='li'>Add grind sheets to calculate $/hr and more data</Typography>
           <Typography component='li'>To be determined...</Typography>
         </ul>
