@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
-const baseUrl = 'https://bdo-api-helper.herokuapp.com';
+const baseUrl = 'https://bdo-api-helper.herokuapp.com/bdo-stuff';
 
 let token = localStorage.getItem('token') || '';
 let tokenExpiration = localStorage.getItem('tokenExpiration') || '';
