@@ -34,9 +34,10 @@ const checkTokenExpired = async () => {
 
 const refreshToken = async () => {
     try {
-
+        console.log('Refreshing Token');
         const response = await axios.post(`${baseUrl}/refresh_token`);
         const data = response.data;
+        console.log(data.token);
         setToken(data.token, data.tokenExpires);
 
     } catch (err) {
