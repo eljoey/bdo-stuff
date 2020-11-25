@@ -31,14 +31,19 @@ const Home = () => {
             <Typography component='li'>Add user creation</Typography>
           </ul>
           <ul>
-            <Typography component='li'>Add alert creation(I'll make this more informative tomorow)</Typography>
+            <Typography component='li'>Add alert creation</Typography>
+            <ul>
+              <Typography component='li'>Sign up with the email you wish to recieve your alerts at.</Typography>
+            </ul>
+            <ul>
+              <Typography component='li'>After adding the alert you will recieve an email when it is triggered.</Typography>
+            </ul>
+            <ul>
+              <Typography component='li'>To reactivate go to alerts page and activate
+                (X means its currently inactive).</Typography>
+            </ul>
           </ul>
-        </ul>
-        <ul>
-          <Typography component='li'>Oct 2020</Typography>
-          <ul>
-            <Typography component='li'>Re-style website, plus responsive views for mobile.</Typography>
-          </ul>
+
         </ul>
       </div>
       <div>
