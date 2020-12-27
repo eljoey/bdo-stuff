@@ -185,6 +185,7 @@ const UpgradeForm = () => {
               <MenuItem value='shai'>Shai</MenuItem>
               <MenuItem value='guardian'>Guardian</MenuItem>
               <MenuItem value='hashashin'>Hashashin</MenuItem>
+              <MenuItem value='nova'>Nova</MenuItem>
             </Select>
           </FormControl>
           <FormControl className={classes.formControl} >
