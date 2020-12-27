@@ -59,6 +59,10 @@ const mpTabs = [
         title: 'Shamshir',
         option: 14,
       },
+      {
+        title: 'Morning Star',
+        option: 15,
+      }
     ],
   },
   {
@@ -117,6 +121,10 @@ const mpTabs = [
         title: 'Haladie',
         option: 13,
       },
+      {
+        title: 'Quoratum',
+        option: 14,
+      }
     ],
   },
   {
@@ -200,6 +208,10 @@ const mpTabs = [
         title: 'Jordun',
         option: 19,
       },
+      {
+        title: 'Dual Glaives',
+        option: 20
+      }
     ],
   },
   {
