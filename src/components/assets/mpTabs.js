@@ -211,6 +211,10 @@ const mpTabs = [
       {
         title: 'Dual Glaives',
         option: 20
+      },
+      {
+        title: 'Sting',
+        option: 21
       }
     ],
   },
