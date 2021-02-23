@@ -39,7 +39,7 @@ const ListItems = ({ subTabs, tabId, url }) => {
     <>
       {subTabs.map((tab) => {
         // BDO Skips 18 on Awakening Weapons for some god awful reasoning.
-        if (tabId === 10 && tab.option === 18) {
+        if ((tabId === 10 && tab.option === 18) || (tabId === 65 && tab.option === 8)) {
           return null;
         } else {
           return (

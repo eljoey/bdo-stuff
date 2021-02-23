@@ -571,6 +571,10 @@ const mpTabs = [
         option: 7,
       },
       {
+        title: 'BDO SKIPS THIS DUNNO WHY',
+        option: 8,
+      },
+      {
         title: '[Elephant] Stirrups',
         option: 9,
       },
