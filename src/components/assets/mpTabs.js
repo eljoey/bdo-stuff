@@ -62,6 +62,10 @@ const mpTabs = [
       {
         title: 'Morning Star',
         option: 15,
+      },
+      {
+        title: 'Kyve',
+        option: 16
       }
     ],
   },
@@ -215,6 +219,10 @@ const mpTabs = [
       {
         title: 'Sting',
         option: 21
+      },
+      {
+        title: 'Kibelius',
+        option: 22
       }
     ],
   },
