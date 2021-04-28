@@ -129,6 +129,7 @@ const Alerts = () => {
     const [region, setRegion] = useState('na');
     const [price, setPrice] = useState('');
     const [direction, setDirection] = useState('less than or equal to');
+    const [enhLevel, setEnhLevel] = useState('0');
     const [formAlert, setFormAlert] = useState(false);
     const [formAlertOpen, setFormAlertOpen] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
@@ -168,6 +169,10 @@ const Alerts = () => {
         setItemName(value.name);
     };
 
+    const handleEnhLevelChange = (e) => {
+        setEnhLevel(e.target.value);
+    };
+
     const handleDirectionChange = (e) => {
         setDirection(e.target.value);
     };
@@ -199,6 +204,7 @@ const Alerts = () => {
         const alert = {
             itemId,
             name: itemName,
+            enhLevel,
             price,
             direction,
             region
@@ -326,25 +332,61 @@ const Alerts = () => {
                                 </Alert>
                             </Collapse>
                         )}
-                        <Autocomplete
-                            id='alert-item-name-select'
-                            options={marketItemList}
-                            className={classes.option}
-                            autoHighlight
-                            getOptionLabel={(option) => option.name}
-                            onChange={handleAlertFormChange}
-                            renderOption={(option) => (
-                                <>
-                                    {option.name} (#{option.id})
+                        <FormGroup>
+                            <Autocomplete
+                                id='alert-item-name-select'
+                                options={marketItemList}
+                                className={classes.option}
+                                autoHighlight
+                                getOptionLabel={(option) => option.name}
+                                onChange={handleAlertFormChange}
+                                renderOption={(option) => (
+                                    <>
+                                        {option.name} (#{option.id})
                                 </>
-                            )}
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label='Item Name'
-                                />
-                            )}
-                        />
+                                )}
+                                renderInput={(params) => (
+                                    <TextField
+                                        {...params}
+                                        label='Item Name'
+                                    />
+                                )}
+                            />
+                            <FormControl className={classes.formControl}>
+                                <InputLabel id='enhanceGrade-label' className={classes.label}>Enhance Grade</InputLabel>
+                                <Select
+                                    labelId='enhanceGrade-label'
+                                    id='enhanceGrade'
+                                    name='enhanceGrade'
+                                    value={enhLevel}
+                                    onChange={handleEnhLevelChange}
+                                    className={classes.select}
+                                >
+                                    <MenuItem value='0'>0</MenuItem>
+                                    <MenuItem value='1'>1</MenuItem>
+                                    <MenuItem value='2'>2</MenuItem>
+                                    <MenuItem value='3'>3</MenuItem>
+                                    <MenuItem value='4'>4</MenuItem>
+                                    <MenuItem value='5'>5</MenuItem>
+                                    <MenuItem value='6'>6</MenuItem>
+                                    <MenuItem value='7'>7</MenuItem>
+                                    <MenuItem value='8'>8</MenuItem>
+                                    <MenuItem value='9'>9</MenuItem>
+                                    <MenuItem value='10'>10</MenuItem>
+                                    <MenuItem value='11'>11</MenuItem>
+                                    <MenuItem value='12'>12</MenuItem>
+                                    <MenuItem value='13'>13</MenuItem>
+                                    <MenuItem value='14'>14</MenuItem>
+                                    <MenuItem value='15'>15</MenuItem>
+                                    <MenuItem value='16'>16</MenuItem>
+                                    <MenuItem value='17'>17</MenuItem>
+                                    <MenuItem value='18'>18</MenuItem>
+                                    <MenuItem value='19'>19</MenuItem>
+                                    <MenuItem value='20'>20</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </FormGroup>
+
                         <FormGroup row>
                             <FormControl className={classes.formControl}>
                                 <InputLabel id='direction-label' className={classes.label}>Direction</InputLabel>
