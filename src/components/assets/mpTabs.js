@@ -66,6 +66,10 @@ const mpTabs = [
       {
         title: 'Kyve',
         option: 16
+      },
+      {
+        title: 'Serenaca',
+        option: 17
       }
     ],
   },
@@ -128,6 +132,10 @@ const mpTabs = [
       {
         title: 'Quoratum',
         option: 14,
+      },
+      {
+        title: 'Mareca',
+        option: 15
       }
     ],
   },
@@ -223,6 +231,10 @@ const mpTabs = [
       {
         title: 'Kibelius',
         option: 22
+      },
+      {
+        title: 'Patraca',
+        option: 23
       }
     ],
   },
@@ -447,6 +459,10 @@ const mpTabs = [
       {
         title: 'Sub-Weapon',
         option: 2,
+      },
+      {
+        title: 'Awakening Weapon',
+        option: 8
       },
       {
         title: 'Helmet',
