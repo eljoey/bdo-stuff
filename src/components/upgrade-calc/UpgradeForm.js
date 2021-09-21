@@ -186,6 +186,8 @@ const UpgradeForm = () => {
               <MenuItem value='guardian'>Guardian</MenuItem>
               <MenuItem value='hashashin'>Hashashin</MenuItem>
               <MenuItem value='nova'>Nova</MenuItem>
+              <MenuItem value='sage'>Sage</MenuItem>
+              <MenuItem value='corsair'>Corsair</MenuItem>
             </Select>
           </FormControl>
           <FormControl className={classes.formControl} >
@@ -283,6 +285,7 @@ const UpgradeForm = () => {
             >
               <MenuItem value='Dandelion'>Dandelion</MenuItem>
               <MenuItem value='Dragon'>Dragon Slayer</MenuItem>
+              <MenuItem value='Blackstar'>Blackstar</MenuItem>
             </Select>
           </FormControl>
           <FormControl className={classes.formControl} >
@@ -316,6 +319,7 @@ const UpgradeForm = () => {
             >
               <MenuItem value="Bheg's">Bheg's</MenuItem>
               <MenuItem value="Leebur's">Leebur's</MenuItem>
+              <MenuItem value="Blackstar">Blackstar</MenuItem>
             </Select>
           </FormControl>
           <FormControl className={classes.formControl} >
@@ -349,6 +353,7 @@ const UpgradeForm = () => {
             >
               <MenuItem value="Griffon's">Griffon's</MenuItem>
               <MenuItem value="Giath's">Giath's</MenuItem>
+              <MenuItem value="Blackstar">Blackstar</MenuItem>
             </Select>
           </FormControl>
           <FormControl className={classes.formControl} >
@@ -383,6 +388,7 @@ const UpgradeForm = () => {
               <MenuItem value='Dim'>Dim Tree's</MenuItem>
               <MenuItem value='Red'>Red Nose</MenuItem>
               <MenuItem value='Blackstar'>Blackstar Armor</MenuItem>
+              <MenuItem value='Fallen'>Fallen God</MenuItem>
             </Select>
           </FormControl>
           <FormControl className={classes.formControl} >
@@ -416,6 +422,7 @@ const UpgradeForm = () => {
             >
               <MenuItem value="Urugon's">Urugon's</MenuItem>
               <MenuItem value="Muskan's">Muskan's</MenuItem>
+              <MenuItem value="Blackstar">Blackstar</MenuItem>
             </Select>
           </FormControl>
           <FormControl className={classes.formControl} >
@@ -449,11 +456,11 @@ const UpgradeForm = () => {
             >
               <MenuItem value='Ring of Crescent Guardian'>
                 Ring of Crescent Guardian
-            </MenuItem>
+              </MenuItem>
               <MenuItem value='Tungrad Ring'>Tungrad Ring</MenuItem>
               <MenuItem value='Ring of Cadry Guardian'>
                 Ring of Cadry Guardian
-            </MenuItem>
+              </MenuItem>
               <MenuItem value='Eye of the Ruins Ring'>Eye of the Ruins Ring</MenuItem>
             </Select>
           </FormControl>
@@ -491,6 +498,7 @@ const UpgradeForm = () => {
               <MenuItem value='Black Distortion Earring'>Black Distortion Earring</MenuItem>
               <MenuItem value='Ethereal Earrings'>Ethereal Earrings</MenuItem>
               <MenuItem value='Dawn Earring'>Dawn Earring</MenuItem>
+              <MenuItem value="Vaha's Dawn">Vaha's Dawn</MenuItem>
             </Select>
           </FormControl>
           <FormControl className={classes.formControl} >
@@ -563,7 +571,7 @@ const UpgradeForm = () => {
               <MenuItem value='Tungrad Belt'>Tungrad Belt</MenuItem>
               <MenuItem value='Valtarra Eclipsed Belt'>
                 Valtarra Eclipsed Belt
-            </MenuItem>
+              </MenuItem>
               <MenuItem value='Centaurus Belt'>Centaurus Belt</MenuItem>
               <MenuItem value="Orkinrad's Belt">Orkinrad's Belt</MenuItem>
             </Select>
