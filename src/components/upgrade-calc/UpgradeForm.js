@@ -388,7 +388,6 @@ const UpgradeForm = () => {
               <MenuItem value='Dim'>Dim Tree's</MenuItem>
               <MenuItem value='Red'>Red Nose</MenuItem>
               <MenuItem value='Blackstar'>Blackstar Armor</MenuItem>
-              <MenuItem value='Fallen'>Fallen God</MenuItem>
             </Select>
           </FormControl>
           <FormControl className={classes.formControl} >
