@@ -291,6 +291,32 @@ const mpTabs = [
     ],
   },
   {
+    title: 'Lightstone',
+    tab: 85,
+    subTabs: [
+      {
+        title: 'Lightstone of Fire',
+        option: 1,
+      },
+      {
+        title: 'Lightstone of Earch',
+        option: 2,
+      },
+      {
+        title: 'Lightstone of Wind',
+        option: 3,
+      },
+      {
+        title: 'Lightstone of Flora',
+        option: 4,
+      },
+      {
+        title: 'Special Lightstone',
+        option: 5
+      }
+    ],
+  },
+  {
     title: 'Material',
     tab: 25,
     subTabs: [
